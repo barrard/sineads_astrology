@@ -46,8 +46,9 @@ module.exports ={
           }else{
             callback({message:resp})
           }
+          client.close()
+
         })
-      client.close()
     })
   },
 
