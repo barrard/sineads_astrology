@@ -41,9 +41,9 @@ app.post('/output', (req, res)=>{
 })
 
 
-  // var data = {test:"test"}
+  var data = {test:"test"}
 
-// MongoDB.insertIntoMongo("test", data, (resp)=>{console.log(resp)})
+MongoDB.insertIntoMongo("test", data, (resp)=>{console.log(resp)})
 
 
 

@@ -64,7 +64,7 @@ App={
 
 
               }
-              tar.blur()
+              // tar.blur()
 
               
               $('[data-output="'+name+'"]').text(_found_data);
@@ -73,14 +73,14 @@ App={
             })
           }
         })
-        // $(v).on('input', (e)=>{
-        //   console.log('input')
-        //   var tar = e.target
-        //   tar.blur()
-        //   // tar.focus()
-        //   // tar.blur()
+        $(v).on('input', (e)=>{
+          console.log('input')
+          var tar = e.target
+          // tar.blur()
+          // tar.focus()
+          // tar.blur()
 
-        // })
+        })
 
 
       })
@@ -139,12 +139,12 @@ App={
         _found_data = resp_obj.message.length;
         var messages = resp_obj.message;
         console.log(messages)
-        for(let x = 0 ; x < messages.length ; X++){
+        for(let x = 0 ; x < messages.length ; x++){
           console.log(messages.length)
           console.log(x)
 
           console.log(messages[x]);
-          // App.utils.create_message_result(messages[x], el, _name);
+          App.utils.create_message_result(messages[x], el, _name);
         }
       }else if(resp_obj.errorMessage != undefined){
         console.log('got an error message');
@@ -158,7 +158,8 @@ App={
     },
     create_message_result:(msg, el, _name)=>{
       console.log('why is this not working?')
-      $(el).append(`<li>${msg[_name+"-description"]} <span data-ID="${msg[_id]}">X</span></li>`)
+      $(el).append(`<li>${msg[_name+"-'description'"]} <span data-ID="${msg._id}">X</span></li>`)
+      // $(el).append(`<li>${"-description"} <span data-ID="${msg['_id']}">X</span></li>`)
     },
     hide_all_data_section:()=>{
       $.each($('[data-section]'),(i, v)=>{$(v).css({display:'none'})})
