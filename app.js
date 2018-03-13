@@ -5,6 +5,7 @@ var app = express();
 //my modules
 var MongoDB = require('./modules/database.js');
 
+app.enable('trust proxy');
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -47,3 +48,5 @@ app.post('/output', (req, res)=>{
 
 
 app.listen(8491)
+
+console.log('listening on port 8491')

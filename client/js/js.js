@@ -64,7 +64,7 @@ App={
 
 
               }
-              // tar.blur()
+              tar.blur()
 
               
               $('[data-output="'+name+'"]').text(_found_data);
@@ -73,14 +73,14 @@ App={
             })
           }
         })
-        $(v).on('input', (e)=>{
-          console.log('input')
-          var tar = e.target
-          tar.blur()
-          tar.focus()
-          tar.blur()
+        // $(v).on('input', (e)=>{
+        //   console.log('input')
+        //   var tar = e.target
+        //   tar.blur()
+        //   // tar.focus()
+        //   // tar.blur()
 
-        })
+        // })
 
 
       })
@@ -104,41 +104,46 @@ App={
         if(val=='') return
           data_obj[key]=val
         if(Object.keys(data_obj).length == count){
-          console.log('we got a full obj')
-          console.log(data_obj)
+          console.log('we got a full obj');
+          console.log(data_obj);
           $.post('/astrology/output', data_obj, (resp)=>{
-            console.log(resp)
-            App.utils.stop_spinner(el)
-            App.utils.write_results(el, resp, _name)
-            console.log('work worrk work')
+            console.log('/astrology/output data returned');
+            console.log(resp);
+            App.utils.stop_spinner(el);
+            App.utils.write_results(el, resp, _name);
+            
           })
         }else{
-          console.log('not full yet')
-          console.log("count = "+count)
+          console.log('not full yet');
+          console.log("count = "+count);
           console.log("were only at  : "+Object.keys(data_obj).length)
           //start spinner?
-          App.utils.start_spinner(el)
+          App.utils.start_spinner(el);
         }
       })
     },
     start_spinner:(el)=>{
       if(el.children().length > 0) return
-      $(el).append('<div id="block-spinner"></div>')
+      $(el).append('<div id="block-spinner"></div>');
     },
     stop_spinner:(el)=>{
-      console.log('stop spinner')
-      $('#block-spinner').remove()
+      console.log('stop spinner');
+      $('#block-spinner').remove();
     },
     write_results:(el, resp_obj, _name)=>{
-      console.log(el)
-      console.log(resp_obj)
+      console.log(el);
+      console.log(resp_obj);
       var _found_data;
       if(resp_obj.message != undefined){
         console.log('got a message');
         _found_data = resp_obj.message.length;
         var messages = resp_obj.message;
+        console.log(messages)
         for(let x = 0 ; x < messages.length ; X++){
-          console.log(messages[x])
+          console.log(messages.length)
+          console.log(x)
+
+          console.log(messages[x]);
           // App.utils.create_message_result(messages[x], el, _name);
         }
       }else if(resp_obj.errorMessage != undefined){
