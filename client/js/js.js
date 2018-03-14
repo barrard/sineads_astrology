@@ -1,5 +1,5 @@
 App={
-  current_content:'IO',
+  current_content:'SABIAN_SYMBOLS',
   current_data_section:'',
   list_counter:{},
   init:()=>{
@@ -251,6 +251,14 @@ App={
         $(e).parent().parent().remove()
 
       })
+    }
+
+  },
+  report_error:(_container, error_message)=>{
+    toastr.warning(error_message)
+    if(_container && error_message){
+      $(_container).append(error_message)
+
     }
 
   }

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="/astrology/css/css.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/css.css"> -->
     <meta charset="UTF-8">
     <title>Astrology database</title>
   </head>
@@ -48,10 +49,72 @@
 <!--     <div class="row justify-content-center align-items-center">
        <h1>Astrology!</h1>
     </div> -->
+
+<!-- MAIN-CONTENT -->
     <div class="row main-content">
+
+    <!-- SABIAN-SYMBOLS SECTION
+     -->
       <div class="col hide" id="SABIAN_SYMBOLS">
-        SABIN SYMBOLS
+        <div class="row justify-content-center">
+          <h2>SABIN SYMBOLS</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-4 col-sm-3 col-lg-2 profiles-list">
+            <div class="row justify-content-center"><h3>Profiles</h3></div>
+            <div class="container justify-content-center" id="profile_list_container">
+              <!-- <div onclick="SABIAN_SYMBOLS.set_current_sabian_symbol_profile(this)" class="profile-item" data-sabian-profile-item="David1">David1</div> -->
+              <!-- <div class="profile-item">David1</div>
+              <div class="profile-item">David1</div>
+              <div class="profile-item">David1</div> -->
+            </div>
+          </div>
+          <!-- col -->
+          <div class="col offset-1">
+            <div class="row">
+              <label for="creat-new-profile-name">Add New Profile</label>
+            </div>
+            <div class="row">
+              <input type="text"  name="creat-new-profile-name" id="add_new_sabian_symbol_profile_input"/>
+            </div>
+            <div class="row">
+              <button class="button success" id="add_new_sabian_symbol_profile_btn">check</button>
+            </div>
+          </div>
+        </div>
+        <!-- row top  -->
+        <hr>
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col-8">
+                <div class="row justify-content-center"><h3>View/Edit  |   <span id="current-profile-view">Dave</span></h3></div>
+              </div>
+              <div class="col offset-1">
+                <button class="button" id="save_sabian_symbols_btn">Save</button>
+                <button class="button" id="minimize_sabian_symbols_btn">Min.</button>
+              </div>
+            </div>
+
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Natal Point</th>
+                <th>Symbol</th>
+                <th>edit</th>
+              </tr>
+            </thead>
+            <tbody id='sabian_symbol_edit_view'>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+
+
+      <!-- INPUT/OUTPUT SECTION -->
 
 
       <div class="col hide" id="IO"> <!-- The io thing  -->
@@ -585,17 +648,21 @@
           </div> 
         </div>
         <button type="button" class="submit-button full-width btn btn-primary">submit</button>
-
+      </div>
       </div>
       <!-- end main-content -->
     </div>
     <!-- end container -->
 
+    <!-- <script src="/js/jq.js"></script> -->
     <script src="/astrology/js/jq.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script src="/astrology/js/js.js"></script>
+    <!-- <script src="/js/js.js"></script> -->
+    <!-- <script src="/js/sabian_symbol_page.js"></script> -->
+    <script src="/astrology/js/sabian_symbol_page.js"></script>
   </body>
 </html>
