@@ -246,7 +246,7 @@ App={
       console.log(e)
       console.log(e.parent)
       var _id = $(e).attr('data-ID')
-      $.post('/delete_description', {_id} , (resp)=>{
+      $.post('/astrology/delete_description', {_id} , (resp)=>{
         console.log(resp)
         $(e).parent().parent().remove()
 
