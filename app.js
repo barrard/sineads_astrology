@@ -4,6 +4,7 @@ var app = express();
 
 //my modules
 var MongoDB = require('./modules/database.js');
+var Util = require('./modules/util.js');
 
 app.enable('trust proxy');
 
@@ -21,10 +22,17 @@ app.get('/', (req, res)=>{
 app.post('/input', (req, res)=>{
   console.log(req.body)
   var data = req.body
-  MongoDB.insertIntoMongo("inputs", data, (resp)=>{
-    console.log(resp)
-  })
-  res.send('OK')
+  if(Util.verify_full_obj(data)){
+    MongoDB.insertIntoMongo("inputs", data, (resp)=>{
+      console.log(resp)
+      res.send(resp)
+
+    })
+  }else{
+    res.send('fail')
+
+  }
+
 })
 
 
@@ -41,9 +49,25 @@ app.post('/output', (req, res)=>{
 })
 
 
-  var data = {test:"test"}
+app.post('/delete_description', (req, res)=>{
+  console.log('delete_description route hit?')
+  console.log(req.body)
+  var data = req.body
+  MongoDB.findAndDeleteOneInCollection("inputs", data._id, (resp)=>{
+    console.log('//////')
+    console.log(resp)
+    console.error(resp)
+    res.send('resp')
 
-MongoDB.insertIntoMongo("test", data, (resp)=>{console.log(resp)})
+  })
+})
+
+
+
+
+  // var data = {test:"test"}
+
+// MongoDB.insertIntoMongo("test", data, (resp)=>{console.log(resp)})
 
 
 

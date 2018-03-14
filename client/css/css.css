@@ -61,11 +61,11 @@ textarea{
   text-shadow: 3px 3px 3px goldenrod;
 }
 
-div[data-total-output]{
+div.output{
   max-height: 150px;
   overflow-y: scroll;
   width:100%;
-  border: 1px solid red;
+  border: 3px solid #212529;
 }
 
 input[data-meta="name"]{
@@ -94,4 +94,13 @@ input[data-meta="name"]{
 
 nav label{
   color: white;
+}
+
+table tr:nth-child(even){
+  background: rgb(222, 222, 222);
+}
+
+th{
+  background: rgb(222, 222, 222);
+
 }

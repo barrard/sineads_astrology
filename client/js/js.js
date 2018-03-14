@@ -1,5 +1,7 @@
 App={
   current_content:'IO',
+  current_data_section:'',
+  list_counter:{},
   init:()=>{
     return App.setUI();
   },
@@ -15,6 +17,25 @@ App={
     var mc = $('.main-content')[0]
     $(mc).html('')
   },
+  verify_full_obj:(current_data_section)=>{
+    var data_inputs = $('[name*="'+current_data_section+'"]')
+    console.log(data_inputs)
+    var _tmp = {}
+    $.each(data_inputs, (i, v)=>{
+      if(!$(v).val()){
+        _tmp[i]=v
+      }
+    })
+    console.log(_tmp)
+    if(Object.keys(_tmp) <1){
+      console.log('this is a full obj')
+      return 'good'
+    }else{
+      console.log('this needs more data')
+      return _tmp
+    }
+
+  },
   utils:{
     get_all_data:()=>{
       var data = {}
@@ -28,11 +49,36 @@ App={
     },
     init_submit_btn:()=>{
       $('.submit-button')[0].addEventListener('click', ()=>{
-        
-        $.post("/astrology/input", App.utils.get_all_data(), (data)=>{
-          console.log(data)
-        })
+        var _data = App.verify_full_obj(App.current_data_section)
+        if( _data == "good"){
+          var data = App.utils.get_all_data()
+          $.post("/astrology/input", data, (resp)=>{
+            data['_id']=resp.message.insertedIds[0]
+            App.utils.create_message_result(data, $('[data-total-output="'+App.current_data_section+'"]'), App.current_data_section, ++App.list_counter[App.current_data_section]);
+            toastr.success(App.current_data_section.split('-').join(' '), "Submited succesfully")
+            console.log(resp)
+            $.each($('[name="'+App.current_data_section+'-description"]'), (i, v)=>{
+              $(v).val('')
+              // $(v).removeClass('is-set')
+              // $(v).addClass('not-set')
+            })
+
+          })       
+        }else{
+          console.log(_data)
+          App.utils.apply_error_notification(_data)
+        }
+   
       })
+    },
+    apply_error_notification:(_el_obj)=>{
+      console.log('these eles need to be errorified')
+      console.log(_el_obj)
+      $.each(_el_obj, (i, v)=>{
+        handle_animation(v, 'shake')
+        toastr.error('Data Appears to be blank')
+      })
+
     },
     init_cool_select:()=>{
       $.each($('.cool-select'), (i, v)=>{
@@ -64,7 +110,7 @@ App={
 
 
               }
-              // tar.blur()
+              tar.blur()
 
               
               $('[data-output="'+name+'"]').text(_found_data);
@@ -73,14 +119,14 @@ App={
             })
           }
         })
-        $(v).on('input', (e)=>{
-          console.log('input')
-          var tar = e.target
-          // tar.blur()
-          // tar.focus()
-          // tar.blur()
+        // $(v).on('input', (e)=>{
+        //   console.log('input')
+        //   var tar = e.target
+        //   // tar.blur()
+        //   // tar.focus()
+        //   // tar.blur()
 
-        })
+        // })
 
 
       })
@@ -142,23 +188,25 @@ App={
         for(let x = 0 ; x < messages.length ; x++){
           console.log(messages.length)
           console.log(x)
+          App.list_counter[_name]=x
 
           console.log(messages[x]);
-          App.utils.create_message_result(messages[x], el, _name);
+          App.utils.create_message_result(messages[x], el, _name, x);
         }
       }else if(resp_obj.errorMessage != undefined){
         console.log('got an error message');
         _found_data = 0;
-        $(el).text(': No results');
+        App.list_counter[_name]=0
+        // $(el).text(': No results');
       }else{
         console.log('unexpected results');
       }
       console.log(_found_data)
 
     },
-    create_message_result:(msg, el, _name)=>{
+    create_message_result:(msg, el, _name, count)=>{
       console.log('why is this not working?')
-      $(el).append(`<li>${msg[_name+"-'description'"]} <span data-ID="${msg._id}">X</span></li>`)
+      $(el).append(`<tr><td>${count}</td><td>${msg[_name+"-description"]}</td> <td><button onclick="App.delete_description(this) "type="button" class="btn btn-danger"data-ID="${msg._id}">X</button></td></tr>`)
       // $(el).append(`<li>${"-description"} <span data-ID="${msg['_id']}">X</span></li>`)
     },
     hide_all_data_section:()=>{
@@ -167,8 +215,10 @@ App={
     add_data_section_click_events:()=>{
       $.each($('.clickaction_open'),(i, v)=>{$(v).on('click', (e)=>{
         var data_section = $(e.target).text()
+        // console.log('DATA SECTIO ISSS '+data_section)
+        data_section_tag = data_section.split(' ').join('-')
         App.utils.hide_all_data_section()
-
+        App.current_data_section = data_section_tag
         $('[data-section="'+data_section+'"]').css({display:"flex", opacity:"1"})
       })})
 
@@ -190,6 +240,20 @@ App={
       })
     }
   },
+  delete_description:(e)=>{
+    if(confirm('Are you sure you want to delete this item?')){
+      console.log('delete')
+      console.log(e)
+      console.log(e.parent)
+      var _id = $(e).attr('data-ID')
+      $.post('astrology/delete_description', {_id} , (resp)=>{
+        console.log(resp)
+        $(e).parent().parent().remove()
+
+      })
+    }
+
+  }
 
 }
 
@@ -205,5 +269,17 @@ $(function() {
 function test(){
   var img = $('img')[0]
   img.styles.width="50%"
+}
+
+function handle_animation(element, animation){
+  function remove_animation_class(){
+    console.log('animation over')
+    element.classList.remove('animated', animation)
+    element.removeEventListener('animationend', remove_animation_class)
+  }
+  
+  element.addEventListener('animationend', remove_animation_class)
+
+  element.classList.add('animated', animation)
 }
 

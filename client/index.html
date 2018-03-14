@@ -3,7 +3,9 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="astrology/css/css.css">
     <meta charset="UTF-8">
     <title>Astrology database</title>
   </head>
@@ -132,8 +134,19 @@
               </div>
             </div>
               <div class="row justify-content-center">
-                <div class="col">
-                <div class="output" data-total-output="Natal-Aspect">data</div>
+                <div class="col output">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                        <th>description</th>
+                          <th>delete</th>
+                    </tr>
+                  </thead>
+                  <tbody data-total-output="Natal-Aspect">
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -145,9 +158,9 @@
         <div class="row aspect-section">
           <div class="container">
             <div class="row justify-content-center">
-              <h4 class="clickaction_open">Transiting</h4>
+              <h4 class="clickaction_open">Transiting Aspect</h4>
             </div>
-            <div class="row data-section" data-section="Transiting">
+            <div class="row data-section" data-section="Transiting Aspect">
               <div class="col">
                 <div class="row justify-content-center">
               <div class="col-5-md ">
@@ -156,7 +169,7 @@
                     <span class="input-group-text">Transit:</span>
                   </div>
 
-                  <select class="cool-select form-control" name="Transiting-basic-Transit">
+                  <select class="cool-select form-control" name="Transiting-Aspect-Transit">
                     <option></option>
                     <option>Sun</option>
                     <option>Moon</option>
@@ -173,14 +186,14 @@
                     <option>Nadir</option>
                   </select>
                   <div class="input-group-append">
-                    <span data-output="Transiting-basic-Transit" class="input-group-text"></span>
+                    <span data-output="Transiting-Aspect-Transit" class="input-group-text"></span>
                   </div>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Aspect:</span>
                   </div>
-                  <select class="cool-select form-control" name="Transiting-basic-Aspect">
+                  <select class="cool-select form-control" name="Transiting-Aspect-Aspect">
                     <option></option>
                     <option>Square</option>
                     <option>Opposition</option>
@@ -189,14 +202,14 @@
                     <option>Sextile</option>
                   </select>
                   <div class="input-group-append">
-                    <span data-output="Transiting-basic-Aspect" class="input-group-text"></span>
+                    <span data-output="Transiting-Aspect-Aspect" class="input-group-text"></span>
                   </div>
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Natal:</span>
                   </div>
-                  <select class="cool-select form-control" name="Transiting-basic-Natal">
+                  <select class="cool-select form-control" name="Transiting-Aspect-Natal">
                     <option></option>
                     <option>Sun</option>
                     <option>Moon</option>
@@ -213,17 +226,28 @@
                     <option>Nadir</option>
                   </select>
                   <div class="input-group-append">
-                    <span data-output="Transiting-basic-Natal" class="input-group-text"></span>
+                    <span data-output="Transiting-Aspect-Natal" class="input-group-text"></span>
                   </div>
                 </div>
               </div>
               <div class="col-5">
-                <textarea class="form-control" name="Transiting-basic-description"></textarea>
+                <textarea class="form-control" name="Transiting-Aspect-description"></textarea>
               </div>
             </div>
               <div class="row">
-                <div class="col">
-                <div class="output" data-total-output="Transiting-basic">data</div>
+                <div class="col output">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                        <th>description</th>
+                          <th>delete</th>
+                    </tr>
+                  </thead>
+                  <tbody data-total-output="Transiting-Aspect">
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -294,8 +318,19 @@
               </div>
             </div>
               <div class="row">
-                <div class="col">
-                <div class="output" data-total-output="Natal-Planets-in-Sign">data</div>
+                <div class="col output">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                        <th>description</th>
+                          <th>delete</th>
+                    </tr>
+                  </thead>
+                  <tbody data-total-output="Natal-Planets-in-Sign">
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -366,8 +401,19 @@
               </div>
             </div>
               <div class="row">
-                <div class="col">
-                <div class="output" data-total-output="Transiting-Planets-in-Sign">data</div>
+                <div class="col output">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                        <th>description</th>
+                          <th>delete</th>
+                    </tr>
+                  </thead>
+                  <tbody data-total-output="Transiting-Planets-in-Sign">
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -438,8 +484,19 @@
               </div>
             </div>
               <div class="row">
-                <div class="col">
-                <div class="output" data-total-output="Natal-in-House">data</div>
+                <div class="col output">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                        <th>description</th>
+                          <th>delete</th>
+                    </tr>
+                  </thead>
+                  <tbody data-total-output="Natal-in-House">
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -508,8 +565,19 @@
               </div>
             </div>
               <div class="row">
-                <div class="col">
-                <div class="output" data-total-output="Transiting-in-House">data</div>
+                <div class="col output">
+                <table class="table" >
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                        <th>description</th>
+                          <th>delete</th>
+                    </tr>
+                  </thead>
+                  <tbody data-total-output="Transiting-in-House">
+                    
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -523,8 +591,8 @@
     </div>
     <!-- end container -->
 
-    <script src="js/jq.js"></script>
-
-    <script src="js/js.js"></script>
+    <script src="astrology/js/jq.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script src="astrology/js/js.js"></script>
   </body>
 </html>

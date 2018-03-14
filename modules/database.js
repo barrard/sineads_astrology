@@ -1,4 +1,5 @@
 var MongoClient = require('mongodb').MongoClient
+var mongodb = require('mongodb')
 var url = 'mongodb://localhost:27017';
 var database_name = "astrology-test"
 
@@ -76,10 +77,26 @@ module.exports ={
         }
       })
     })
-  }
-     
-  
+  },
 
+  findAndDeleteOneInCollection:(collectionName, objToDelete, callback)=>{
+    connectionToMongoCollection(collectionName, (col, client)=>{
+      console.log(typeof(objToDelete))
+      const _id = new mongodb.ObjectID(objToDelete)
+      console.log(typeof(_id))
+      col.deleteOne({_id:_id}, (err, resp)=>{
+        if(err){
+          console.log('we got error')
+          callback({err})
+        }else{
+          console.log('we got resp?')
+          callback({resp})
+        }
+      })
+
+    })
+
+    }
 
 
 }
