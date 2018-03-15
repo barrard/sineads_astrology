@@ -2,8 +2,11 @@ App={
   current_content:'SABIAN_SYMBOLS',
   current_data_section:'',
   list_counter:{},
+  main_content_sections:['IO','SABIAN_SYMBOLS'],
   init:()=>{
+    console.log('App loading')
     return App.setUI();
+
   },
   setUI:()=>{
     App.utils.hide_all_data_section()
@@ -11,7 +14,15 @@ App={
     App.utils.init_cool_select()
     App.utils.init_submit_btn()
     App.click_handlers.nav_links()
+    App.show_current_content()
+  },
+  show_current_content:()=>{
+    $.each(App.main_content_sections, (i,v)=>{
+      console.log(v)
+      $('#'+v).addClass('hide')
+    })
     $('#'+App.current_content).removeClass('hide')
+
   },
   main_content:(content)=>{
     var mc = $('.main-content')[0]
@@ -153,7 +164,8 @@ App={
           console.log('we got a full obj');
           console.log(data_obj);
           $.post('/astrology/output', data_obj, (resp)=>{
-            console.log('/astrology/output data returned');
+            console.log('/astrology/output data returned, better clear what already in there.....');
+            $(el).html('')
             console.log(resp);
             App.utils.stop_spinner(el);
             App.utils.write_results(el, resp, _name);
@@ -266,11 +278,11 @@ App={
 }
 
 
-$(function() {
-  $(window).on('load', function() {
-    console.log('load')
-    App.init();
-  });
+window.addEventListener("load", function(event) {
+  console.log("All resources finished loading!");
+  SABIAN_SYMBOLS.init();
+
+  App.init();
 });
 
 

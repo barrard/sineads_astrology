@@ -1,11 +1,13 @@
 SABIAN_SYMBOLS = {
   current_profile:'',
   symbols:['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Descendant', 'Midheaven', 'Nadir', 'North Node', 'South Node'],
-
+  sabian_symbol_compared_values:[],
   init:()=>{
+    console.log('Sabin symbols loading')
     SABIAN_SYMBOLS.get_all_profiles()
     SABIAN_SYMBOLS.set_up_sabian_symbol_edit_view();
     SABIAN_SYMBOLS.set_event_handlers();
+    SABIAN_SYMBOLS.init_compare_tool();
 
   },
   create_new_profile:(_name)=>{
@@ -80,7 +82,17 @@ SABIAN_SYMBOLS = {
     // add_new_sabian_symbol_profile_btn
     //add_new_sabian_symbol_profile_input
     // [data-sabian-profile-item*=""]
+    let table_sizes=['1000px','400px', '100px']
+    let current_table_state = 2
+    let _max = table_sizes.length - 1;
+    $('#minimize_sabian_symbols_btn').on('click', ()=>{
+      console.log(current_table_state)
+      current_table_state++
+      current_table_state > _max ? current_table_state = 0:true;
+      $('.sabian_symbol_table_container').css({maxHeight:table_sizes[current_table_state]})      
 
+    })
+      
     $('#add_new_sabian_symbol_profile_btn').on('click', ()=>{
       console.log('get the value of add_new_sabian_symbol_profile_profile')
       let _name = $('#add_new_sabian_symbol_profile_input').val()
@@ -104,6 +116,25 @@ SABIAN_SYMBOLS = {
       }
 
     })
+  },
+  init_compare_tool:()=>{
+    let tool = $('.sabian_symbol_compare_tool')[0]
+    var select = SABIAN_SYMBOLS.utils.make_sabian_symbol_compare_select_box(SABIAN_SYMBOLS.symbols)
+    $(tool).append(select)
+
+  },
+  utils:{
+    make_sabian_symbol_compare_select_box:(sabian_symbol_array)=>{
+      let select = $("<select></select>");
+      $(select).on('change', (e)=>{
+        console.log($(e.target).val())
+
+      })
+      sabian_symbol_array.forEach(i=>{
+        select.append(`<option>${i}</option>`)
+      })
+      return select
+    }
   }
 
 }
@@ -111,9 +142,9 @@ SABIAN_SYMBOLS = {
 
 
 
-$(function() {
-  $(window).on('load', function() {
-    console.log('load')
-    SABIAN_SYMBOLS.init();
-  });
-});
+// $(function() {
+//   $(window).on('load', function() {
+//     console.log('load')
+//     SABIAN_SYMBOLS.init();
+//   });
+// });

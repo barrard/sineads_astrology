@@ -1,0 +1,1509 @@
+v = v.split('\n')
+v.forEach((v, i, a)=>{if(v=='') a.splice(i, 1)})
+
+sabian_symbol_data = {}
+var flag = false
+var current_sign;
+var deg;
+v.forEach((v, i, a)=>{
+  if((!flag)) {
+  console.log('1')
+  console.log(v)
+
+    current_sign = v
+    sabian_symbol_data[v]={}
+    flag = true
+  }else if((v == ' ') && (i%2!=0)){
+  console.log('2')
+  console.log(v)
+
+  flag = false
+  }else if(i%2!=0){
+  console.log('3')
+  console.log(v)
+
+
+  deg = v
+    sabian_symbol_data[current_sign][deg]=''
+  }else if(i%2==0){
+  console.log('4')
+  console.log(v)
+    sabian_symbol_data[current_sign][deg]=v
+  }
+})
+
+{'Aries: {…}, Taurus: {…}, Gemini: {…}, Cancer: {…}, Leo: {…}, …}'Aries: {"  0-1 deg Aries": "A Woman Just Risen From The Sea; A Seal Is Embracing Her", "  1-2 deg Aries": "A Comedian Reveals Human Nature", "  2-3 deg Aries": "The Cameo Profile Of A Man, Suggesting The Shape Of His Country", "  3-4 deg Aries": "Two Lovers Strolling On A Secluded Walk", "  4-5 deg Aries": "A Triangle With Wings", …}Aquarius: "  0-1 deg Aquarius": "An Old Adobe Mission In California""  1-2 deg Aquarius": "An Unexpected Thunderstorm""  2-3 deg Aquarius": "A Deserter From The Navy""  3-4 deg Aquarius": "A Hindu Yogi Demonstrates His Healing Powers""  4-5 deg Aquarius": "A Council Of Ancestors Is Seen Implementing Thee Efforts Of A Young Leader""  5-6 deg Aquarius": "A Masked Figure Performs Ritualistic Acts In A Mystery Play""  6-7 deg Aquarius": "A Child Is Seen Being Born Out Of An Egg""  7-8 deg Aquarius": "Beautifully Gowned Wax Figures On Display""  8-9 deg Aquarius": "A Flag Is Seen Turning Into An Eagle""  9-10 deg Aquarius": "A Man Who Had For A Time Become The Embodiment Of A Popular Ideal Is Made To Realize That As A Person He Is Not This Ideal""  10-11 deg Aquarius": "During A Silent Hour, A Man Receives A New Inspiration Which May Change His Life""  11-12 deg Aquarius": "On A Vast Staircase Stand People Of Different Types, Graduated Upward""  12-13 deg Aquarius": "A Barometer""  13-14 deg Aquarius": "A Train Entering A Tunnel""  14-15 deg Aquarius": "Two Lovebirds Sitting On A Fence And Singing Happily""  15-16 deg Aquarius": "A Big Businessman At His Desk""  16-17 deg Aquarius": "A Watchdog Stands Guard, Protecting His Master And His Possessions""  17-18 deg Aquarius": "A Man’s Secret Motives Are Being Publicly Unmasked""  18-19 deg Aquarius": "A Forest Fire Is Being Subdued By The Use Of Water, Chemicals And Sheer Muscular Energy""  19-20 deg Aquarius": "A Large White Dove Bearing A Message""  20-21 deg Aquarius": "A Disappointed And Disillusioned Woman Courageously Faces A Seemingly Empty Life""  21-22 deg Aquarius": "A Rug Is Placed On The Floor Of A Nursery To Allow Children To Play In Comfort And Warmth""  22-23 deg Aquarius": "A Big Bear Sitting Down And Waving All Its Paws""  23-24 deg Aquarius": "A Man, Having Overcome His Passions, Teaches Deep Wisdom In Terms Of His Experience""  24-25 deg Aquarius": "A Butterfly With The Right Wing More Perfectly Formed""  25-26 deg Aquarius": "A Garage Man Testing A Car’s Battery With A Hydrometer""  26-27 deg Aquarius": "An Ancient Pottery Bowl Filled With Fresh Violets""  27-28 deg Aquarius": "A Tree Felled And Sawed To Ensure A Supply Of Wood For The Winter""  28-29 deg Aquarius": "A Butterfly Emerging From A Chrysalis""  29-30 deg Aquarius": "Deeply Rooted In The Past Of A Very Ancient Culture, A Spiritual Brotherhood In Which Many Individual Minds Are Merged Into The Glowing Light Of A Unanimous Consciousness Is Revealed To One Who Has Emerged Successfully From His Metamorphosis"__proto__: ObjectCancer: {"  0-1 deg Cancer": "On A Ship The Sailors Lower An Old Flag And Raise A New One", "  1-2 deg Cancer": "A Man On A Magic Carpet Hovers Over A Large Area Of Land", "  2-3 deg Cancer": "A Man Bundled In Fur Leads A Shaggy Deer", "  3-4 deg Cancer": "A Cat Arguing With A Mouse", "  4-5 deg Cancer": "At A Railroad Crossing, An Automobile is Wrecked By A Train", …}Capricorn: {"  0-1 deg Capricorn": "An Indian Chief Claims Power From The Assembled Tribe", "  1-2 deg Capricorn": "Three Rose Windows In A Gothic Church, One Damaged By War", "  2-3 deg Capricorn": "A Human Soul, In Its Eagerness For New Experiences, Seeks Embodiment", "  3-4 deg Capricorn": "A Group Of People Outfitting A Large Canoe At The Start Of A Journey By Water", "  4-5 deg Capricorn": "Indians On The Warpath. While Some Men Row A Well-Filled Canoe, Others In It Perform A War Dance", …}Gemini: {"  0-1 deg Gemini": "A Glass-Bottomed Boat Reveals Undersea Wonders", "  1-2 deg Gemini": "Santa Claus Furtively Filling Stockings Hanging In Front Of Fireplace", "  2-3 deg Gemini": "The Garden Of The Tuileries In Paris", "  3-4 deg Gemini": "Holly And Mistletoe Reawaken Old Memories Of Christmas", "  4-5 deg Gemini": "A Revolutionary Magazine Asking For Action", …}Leo: {"  0-1 deg Leo": "Blood Rushes To A Man’s Head As His Vital Energies Are Mobilized Under The Spur Of Ambition", "  1-2 deg Leo": "An Epidemic Of Mumps", "  2-3 deg Leo": "A Middle-Aged Woman, Her Long Hair Flowing Over Her Shoulders And In A Braless Youthful Garment", "  3-4 deg Leo": "A Formally Dressed Elderly Man Stands Near Trophies He Brought Back From A Hunting Expedition", "  4-5 deg Leo": "Rock Formations Tower Over A Deep Canyon", …}Libra: {"  0-1 deg Libra": "In A Collection Of Perfect Specimens Of Many Biolo…uty Of Its Wings, Its Body Impaled By A Fine Dart", "  1-2 deg Libra": "The Transmutation Of The Fruits Of Past Experience… Seed-Realizations Of The Forever Creative Spirit", "  2-3 deg Libra": "The Dawn Of A New Day Reveals Everything Changed", "  3-4 deg Libra": "Around A Campfire A Group Of Young People Sit In Spiritual Communion", "  4-5 deg Libra": "A Man Revealing To His Students The Foundation Of …Knowledge Upon Which A “New World” Could Be Built", …}Pisces: {"  0-1 deg Pisces": "In A Crowded Marketplace Farmers And Middlemen Display A Great Variety Of Products", "  1-2 deg Pisces": "A Squirrel Hiding From Hunters", "  2-3 deg Pisces": "Petrified Tree Trunks Lie Broken On Desert Sand", "  3-4 deg Pisces": "Heavy Car Traffic On A Narrow Isthmus Linking Two Seashore Resorts", "  4-5 deg Pisces": "A Church Bazaar", …}Sagittarius: {"  0-1 deg Sagittarius": "Retired Army Veterans Gather To Reawaken Old Memories", "  1-2 deg Sagittarius": "White-capped Waves Display The Power Of Wind Over Sea", "  2-3 deg Sagittarius": "Two Men Playing Chess", "  3-4 deg Sagittarius": "A Little Child Learning To Walk With The Encouragement Of His Parents", "  4-5 deg Sagittarius": "An Old Owl Sits Alone On The Branch Of A Large Tree", …}Scorpio: {"  0-1 deg Scorpio": "A Crowded Sightseeing Bus On A City Street", "  1-2 deg Scorpio": "A Delicate Bottle Of Perfume Lies Broken, Releasing Its Fragrance", "  2-3 deg Scorpio": "A House-Raising Party In A Small Village Enlists The Neighbors’ Cooperation", "  3-4 deg Scorpio": "A Youth Carries A Lighted Candle In A Devotional Ritual", "  4-5 deg Scorpio": "A Massive Rocky Shore Resist The Pounding Of The Sea", …}Taurus: {0-1 deg Taurus: "A Clear Mountain Stream", "  1-2 deg Taurus": "An Electrical Storm", "  2-3 deg Taurus": "Natural Steps Lead To A Lawn Of Clover In Bloom", "  3-4 deg Taurus": "The Pot Of Gold At The End Of The Rainbow", "  4-5 deg Taurus": "A Widow At An Open Grave", …}Virgo: {"  0-1 deg Virgo": "In A Portrait, The Significant Features Of A Man’s Head Are Artistically Emphasized", "  1-2 deg Virgo": "A Large White Cross Dominates The Landscape", "  2-3 deg Virgo": "Two Guardian Angels", "  3-4 deg Virgo": "Black And White Children Play Together Happily", "  4-5 deg Virgo": "A Man Becoming Aware Of Nature Spirits And Normally Unseen Spiritual Agencies", …}__proto__: Object
+
+v = 'Aries
+  0-1 deg Aries
+
+A Woman Just Risen From The Sea; A Seal Is Embracing Her
+
+  1-2 deg Aries
+
+A Comedian Reveals Human Nature
+
+  2-3 deg Aries
+
+The Cameo Profile Of A Man, Suggesting The Shape Of His Country
+
+  3-4 deg Aries
+
+Two Lovers Strolling On A Secluded Walk
+
+  4-5 deg Aries
+
+A Triangle With Wings
+
+  5-6 deg Aries
+
+A Square, With One Of Its Sides Brightly Illumined
+
+  6-7 deg Aries
+
+A Man Succeeds In Expressing Himself Simultaneously In Two Realms
+
+  7-8 deg Aries
+
+A Large Woman’s Hat With Streamers Blown By An East Wind
+
+  8-9 deg Aries
+
+A Crystal Gazer
+
+  9-10 deg Aries
+
+A Teacher Gives New Symbolic Forms To Traditional Images
+
+  10-11 deg Aries
+
+The Ruler Of A Nation
+
+  11-12 deg Aries
+
+A Triangularly Shaped Flight Of Wild Geese
+
+  12-13 deg Aries
+
+An Unexploded Bomb Reveals An Unsuccessful Social Protest
+
+  13-14 deg Aries
+
+A Serpent Coiling Near A Man And A Woman
+
+  14-15 deg Aries
+
+An Indian Weaving A Ceremonial Blanket
+
+  15-16 deg Aries
+
+Nature Spirits Are Seen At Work In The Light Of Sunset
+
+  16-17 deg Aries
+
+Two Dignified Spinsters Sitting In Silence
+
+  17-18 deg Aries
+
+An Empty Hammock Stretched Between Two Trees
+
+  18-19 deg Aries
+
+The “Magic Carpet” Of Oriental Imagery
+
+  19-20 deg Aries
+
+A Young Girl Feeding Birds In Winter
+
+  20-21 deg Aries
+
+A Pugilist Enters The Ring
+
+  21-22 deg Aries
+
+The Gate To The Garden Of All Fulfilled Desires
+
+  22-23 deg Aries
+
+A Pregnant Woman In Light Summer Dress
+
+  23-24 deg Aries
+
+Blown Inward By The Wind, The Curtains Of An Open Window Take The Shape Of A Cornucopia
+
+  24-25 deg Aries
+
+The Possibility For Man To Gain Experience At Two Levels Of Being
+
+  25-26 deg Aries
+
+A Man Possessed Of More Gifts Than He Can Hold
+
+  26-27 deg Aries
+
+Through Imagination A Lost Opportunity Is Regained
+
+  27-28 deg Aries
+
+A Large Audiences Confronts The Performer Who Disappointed Its Expectations
+
+  28-29 deg Aries
+
+The Music Of The Spheres
+
+  29-30 deg Aries
+
+A Duck Pond And Its Brood
+
+ 
+
+Taurus
+0-1 deg Taurus
+
+A Clear Mountain Stream
+
+  1-2 deg Taurus
+
+An Electrical Storm
+
+  2-3 deg Taurus
+
+Natural Steps Lead To A Lawn Of Clover In Bloom
+
+  3-4 deg Taurus
+
+The Pot Of Gold At The End Of The Rainbow
+
+  4-5 deg Taurus
+
+A Widow At An Open Grave
+
+  5-6 deg Taurus
+
+Cantilever Bridge Across A Deep Gorge
+
+  6-7 deg Taurus
+
+The Woman Of Samaria At The Ancestral Well
+
+  7-8 deg Taurus
+
+A Sleigh On Land Uncovered By Snow
+
+  8-9 deg Taurus
+
+A Fully Decorated Christmas Tree
+
+  9-10 deg Taurus
+
+A Red Cross Nurse
+
+  10-11 deg Taurus
+
+A Woman Watering Flowers In Her Garden.
+
+  11-12 deg Taurus
+
+A Young Couple Window Shopping
+
+  12-13 deg Taurus
+
+A Porter Carrying Heavy Baggage
+
+  13-14 deg Taurus
+
+On The Beach, Children Play While Shellfish Grope At The Edge Of The Water
+
+  14-15 deg Taurus
+
+Head Covered With A Rakish Silk Hat, Muffled Against The Cold, A Man Braves A Storm
+
+  15-16 deg Taurus
+
+An Old Teacher Fails To Interest His Pupils In Traditional Knowledge
+
+  16-17 deg Taurus
+
+A Symbolical Battle Between “Swords” And “Torches”
+
+  17-18 deg Taurus
+
+A Woman Airing An Old Bag Through The Open Window Of Her Room
+
+  18-19 deg Taurus
+
+A New Continent Rising Out Of The Ocean
+
+  19-20 deg Taurus
+
+Wisps Of Winglike Clouds Streaming Across The Sky
+
+  20-21 deg Taurus
+
+A Finger Pointing To A Line In An Open Book
+
+  21-22 deg Taurus
+
+White Dove Flying Over Troubled Waters
+
+  22-23 deg Taurus
+
+A Jewelry Shop Filled With Valuable Gems
+
+  23-24 deg Taurus
+
+An Indian Warrior Riding Fiercely, Human Scalps Hanging From His Belt
+
+  24-25 deg Taurus
+
+A Vast Public Park
+
+  25-26 deg Taurus
+
+A Spanish Gallant Serenades His Beloved
+
+  26-27 deg Taurus
+
+An Old Indian Woman Selling The Artifacts Of Her Tribe To Passerby
+
+  27-28 deg Taurus
+
+A Woman, Past Her “Change Of Life”, Experiences A New Love
+
+  28-29 deg Taurus
+
+Two Cobblers Working At A Table
+
+  29-30 deg Taurus
+
+A Peacock Parading On The Terrace Of An Old Castle
+
+ 
+
+Gemini
+  0-1 deg Gemini
+
+A Glass-Bottomed Boat Reveals Undersea Wonders
+
+  1-2 deg Gemini
+
+Santa Claus Furtively Filling Stockings Hanging In Front Of Fireplace
+
+  2-3 deg Gemini
+
+The Garden Of The Tuileries In Paris
+
+  3-4 deg Gemini
+
+Holly And Mistletoe Reawaken Old Memories Of Christmas
+
+  4-5 deg Gemini
+
+A Revolutionary Magazine Asking For Action
+
+  5-6 deg Gemini
+
+Workmen Drilling For Oil
+
+  6-7 deg Gemini
+
+A Well With Bucket And Rope Under The Shade Of Majestic Trees
+
+  7-8 deg Gemini
+
+Aroused Strikers Surround A Factory
+
+  8-9 deg Gemini
+
+A Quiver Filled With Arrows
+
+  9-10 deg Gemini
+
+An Airplane Performing A Nose Dive
+
+  10-11 deg Gemini
+
+Newly Opened Lands Offer The Pioneer New Opportunities For Experience
+
+  11-12 deg Gemini
+
+A Negro Girl Fights For Her Independence In The City
+
+  12-13 deg Gemini
+
+A Famous Pianist Giving A Concert Performance
+
+  13-14 deg Gemini
+
+Bridging Physical Space And Social Distinctions, Two Men Communicate Telepathically
+
+  14-15 deg Gemini
+
+Two Dutch Children Talking To Each Other, Exchanging Their Knowledge
+
+  15-16 deg Gemini
+
+A Woman Activist In An Emotional Speech Dramatizing Her Cause
+
+  16-17 deg Gemini
+
+The Head Of A Robust Youth Changes Into That Of A Mature Thinker
+
+  17-18 deg Gemini
+
+Two Chinese Men Converse In Their Native Tongue In An American City
+
+  18-19 deg Gemini
+
+A Large Archaic Volume Reveals A Traditional Wisdom
+
+  19-20 deg Gemini
+
+A Modern Cafeteria Displays An Abundance Of Food, Products Of Various Regions
+
+  20-21 deg Gemini
+
+A Tumultuous Labor Demonstration
+
+  21-22 deg Gemini
+
+Dancing Couples In A Harvest Festival
+
+  22-23 deg Gemini
+
+Three Fledglings In A Nest High In A Tree
+
+  23-24 deg Gemini
+
+Children Skating Over A Frozen Village Pond
+
+  24-25 deg Gemini
+
+A Gardener Trimming Large Palm Trees
+
+  25-26 deg Gemini
+
+Frost-Covered Trees Against Winter Skies
+
+  26-27 deg Gemini
+
+A Gypsy Emerging From The Forest Wherein Her Tribe Is Encamped
+
+  27-28 deg Gemini
+
+Through Bankruptcy, Society Gives To An Overburdened Individual The Opportunity To Begin Again
+
+  28-29 deg Gemini
+
+The First Mockingbird Of Spring
+
+  29-30 deg Gemini
+
+A Parade Of Bathing Beauties Before Large Beach Crowds
+
+ 
+
+Cancer
+  0-1 deg Cancer
+
+On A Ship The Sailors Lower An Old Flag And Raise A New One
+
+  1-2 deg Cancer
+
+A Man On A Magic Carpet Hovers Over A Large Area Of Land
+
+  2-3 deg Cancer
+
+A Man Bundled In Fur Leads A Shaggy Deer
+
+  3-4 deg Cancer
+
+A Cat Arguing With A Mouse
+
+  4-5 deg Cancer
+
+At A Railroad Crossing, An Automobile is Wrecked By A Train
+
+  5-6 deg Cancer
+
+Game Birds Feathering Their Nests
+
+  6-7 deg Cancer
+
+Two Nature Spirits Dancing Under the Moonlight
+
+  7-8 deg Cancer
+
+A Group Of Rabbits Dressed in Human Clothes Walk As If On Parade
+
+  8-9 deg Cancer
+
+A Small Naked Girl Bends Over A Pond Trying To Catch A Fish
+
+  9-10 deg Cancer
+
+A Large Diamond In The First Stages Of The Cutting Process
+
+  10-11 deg Cancer
+
+A Clown Caricaturing Well-Known Personalities
+
+  11-12 deg Cancer
+
+A Chinese Woman Nursing A Baby Whose Aura Reveals Him To Be The Reincarnation Of A Great Teacher
+
+  12-13 deg Cancer
+
+A Hand With A Prominent Thumb Is Held Out For Study
+
+  13-14 deg Cancer
+
+A Very Old Man Facing A Vast Dark Space To The Northeast
+
+  14-15 deg Cancer
+
+In A Sumptuous Dining Hall Guests Relax After Partaking Of A Huge Banquet
+
+  15-16 deg Cancer
+
+A Man Studying A Mandala In Front Of Him, With The Help Of A Very Ancient Book
+
+  16-17 deg Cancer
+
+The Unfoldment Of Multilevel Potentialities Issuing From An Original Germ
+
+  17-18 deg Cancer
+
+A Hen Scratching The Ground To Find Nourishment For Her Progeny
+
+  18-19 deg Cancer
+
+A Priest Performing A Marriage Ceremony
+
+  19-20 deg Cancer
+
+Venetian Gondoliers Giving A Serenade
+
+  20-21 deg Cancer
+
+A Famous Singer Is Proving Her Virtuosity During An Operatic Performance
+
+  21-22 deg Cancer
+
+A Young Woman Awaiting A Sailboat
+
+  22-23 deg Cancer
+
+The Meeting Of A Literary Society
+
+  23-24 deg Cancer
+
+A Woman And Two Men Castaways On A Small Island Of The South Seas
+
+  24-25 deg Cancer
+
+A Willful Man Is Overshadowed By A Descent Of Superior Power
+
+  25-26 deg Cancer
+
+Guests Are Reading In The Library Of A Luxurious Home
+
+  26-27 deg Cancer
+
+A Violent Storm in A Canyon Filled With Expensive Homes
+
+  27-28 deg Cancer
+
+An Indian Girl Introduces Her White Lover To Her Assembled Tribe
+
+  28-29 deg Cancer
+
+A Greek Muse Weighing Newborn Twins In Golden Scales
+
+  29-30 deg Cancer
+
+A Daughter of The American Revolution
+
+ 
+
+Leo
+  0-1 deg Leo
+
+Blood Rushes To A Man’s Head As His Vital Energies Are Mobilized Under The Spur Of Ambition
+
+  1-2 deg Leo
+
+An Epidemic Of Mumps
+
+  2-3 deg Leo
+
+A Middle-Aged Woman, Her Long Hair Flowing Over Her Shoulders And In A Braless Youthful Garment
+
+  3-4 deg Leo
+
+A Formally Dressed Elderly Man Stands Near Trophies He Brought Back From A Hunting Expedition
+
+  4-5 deg Leo
+
+Rock Formations Tower Over A Deep Canyon
+
+  5-6 deg Leo
+
+A Conservative, Old-Fashioned Lady Is Confronted By A “Hippie” Girl
+
+  6-7 deg Leo
+
+The Constellations Of Stars Shine Brilliantly In The Night Sky
+
+  7-8 deg Leo
+
+A Communist Activist Spreading His Revolutionary Ideals
+
+  8-9 deg Leo
+
+Glass Blowers Shape Beautiful Vases With Their Controlled Breathing
+
+  9-10 deg Leo
+
+Early Morning Dew Sparkles As Sunlight Floods The Field
+
+  10-11 deg Leo
+
+Children Play On A Swing Hanging From The Branches Of A Huge Oak Tree
+
+  11-12 deg Leo
+
+An Evening Party Of Adults On A Lawn Illumined By Fancy Lanterns
+
+  12-13 deg Leo
+
+An Old Sea Captain Rocking Himself On The Porch Of His Cottage
+
+  13-14 deg Leo
+
+A Human Soul Seeking Opportunities For Outward Manifestation
+
+  14-15 deg Leo
+
+A Pageant, With Its Spectacular Floats, Moves Along A Street Crowded With Cheering People
+
+  15-16 deg Leo
+
+The Storm Ended, All Nature Rejoices In Brilliant Sunshine
+
+  16-17 deg Leo
+
+A Volunteer Church Choir Singing Religious Hymns
+
+  17-18 deg Leo
+
+A Chemist Conducts An Experiment For His Students
+
+  18-19 deg Leo
+
+A Houseboat Party
+
+  19-20 deg Leo
+
+Zuni Indians Perform A Ritual To The Sun
+
+  20-21 deg Leo
+
+Intoxicated Chickens Dizzily Flap Their Wings Trying To Fly
+
+  21-22 deg Leo
+
+A Carrier Pigeon Fulfilling Its Mission
+
+  22-23 deg Leo
+
+In A Circus The Bareback Rider Displays Her Dangerous Skill
+
+  23-24 deg Leo
+
+Totally Concentrated Upon Inner Spiritual Attainment, A Man Is Sitting In A State Of Complete Neglect Of Bodily Appearance And Cleanliness
+
+  24-25 deg Leo
+
+A Large Camel Is Seen Crossing A Vast And Forbidding Desert
+
+  25-26 deg Leo
+
+After The Heavy Storm, A Rainbow
+
+  26-27 deg Leo
+
+The Luminescence Of Dawn In The Eastern Sky
+
+  27-28 deg Leo
+
+Many Little Birds On A Limb Of A Big Tree
+
+  28-29 deg Leo
+
+A Mermaid Emerges From The Ocean Waves Ready For Rebirth In Human Form
+
+  29-30 deg Leo
+
+An Unsealed Letter
+
+ 
+
+Virgo
+  0-1 deg Virgo
+
+In A Portrait, The Significant Features Of A Man’s Head Are Artistically Emphasized
+
+  1-2 deg Virgo
+
+A Large White Cross Dominates The Landscape
+
+  2-3 deg Virgo
+
+Two Guardian Angels
+
+  3-4 deg Virgo
+
+Black And White Children Play Together Happily
+
+  4-5 deg Virgo
+
+A Man Becoming Aware Of Nature Spirits And Normally Unseen Spiritual Agencies
+
+  5-6 deg Virgo
+
+A Merry-Go-Round
+
+  6-7 deg Virgo
+
+A Harem
+
+  7-8 deg Virgo
+
+A Five-Year-Old Child Takes A First Dancing Lesson
+
+  8-9 deg Virgo
+
+An Expressionist Painter At Work
+
+  9-10 deg Virgo
+
+Two Heads Looking Out And Beyond The Shadows
+
+  10-11 deg Virgo
+
+In Her Baby A Mother Sees Her Deep Longing For A Son Answered
+
+  11-12 deg Virgo
+
+After The Wedding, The Groom Snatches The Veil Away From His Bride
+
+  12-13 deg Virgo
+
+A Powerful Statesman Overcomes A State Of Political Hysteria
+
+  13-14 deg Virgo
+
+An Aristocratic Family Tree
+
+  14-15 deg Virgo
+
+A Fine Lace Handkerchief, Heirloom From Valorous Ancestors
+
+  15-16 deg Virgo
+
+In The Zoo, Children Are Brought Face To Face With An Orangutan
+
+  16-17 deg Virgo
+
+A Volcanic Eruption
+
+  17-18 deg Virgo
+
+An Ouija Board
+
+  18-19 deg Virgo
+
+A Swimming Race
+
+  19-20 deg Virgo
+
+A Caravan Of Cars Headed To The West Coast
+
+  20-21 deg Virgo
+
+A Girls’ Basketball Team
+
+  21-22 deg Virgo
+
+A Royal Coat Of Arms Enriched With Precious Stones
+
+  22-23 deg Virgo
+
+A Lion Tamer Displays His Skill And Character
+
+  23-24 deg Virgo
+
+Mary And Her Little Lamb
+
+  24-25 deg Virgo
+
+A Flag At Half-Mast In Front Of A Public Building
+
+  25-26 deg Virgo
+
+A Boy With A Censer Serves The Priest Near The Altar
+
+  26-27 deg Virgo
+
+A Group Of Aristocratic Ladies Meet Ceremonially At A Court’s Function
+
+  27-28 deg Virgo
+
+A Baldheaded Man Who Has Seized Power
+
+  28-29 deg Virgo
+
+A Seeker After Occult Knowledge Is Reading An Ancient Scroll Which Illumines His Mind
+
+  29-30 deg Virgo
+
+Totally Intent Upon Completing An Immediate Task, A Man Is Deaf To Any Allurement
+
+ 
+
+Libra
+  0-1 deg Libra
+
+In A Collection Of Perfect Specimens Of Many Biological Forms, A Butterfly Displays The Beauty Of Its Wings, Its Body Impaled By A Fine Dart
+
+  1-2 deg Libra
+
+The Transmutation Of The Fruits Of Past Experiences Into The Seed-Realizations Of The Forever Creative Spirit
+
+  2-3 deg Libra
+
+The Dawn Of A New Day Reveals Everything Changed
+
+  3-4 deg Libra
+
+Around A Campfire A Group Of Young People Sit In Spiritual Communion
+
+  4-5 deg Libra
+
+A Man Revealing To His Students The Foundation Of An Inner Knowledge Upon Which A “New World” Could Be Built
+
+  5-6 deg Libra
+
+A Man Watches His Ideals Taking A Concrete Form Before His Inner Vision
+
+  6-7 deg Libra
+
+A Woman Feeding Chickens And Protecting Them From The Hawks
+
+  7-8 deg Libra
+
+A Blazing Fireplace In A Deserted Home
+
+  8-9 deg Libra
+
+Three “Old Masters” Hanging On The Wall Of A Special Room In An Art Gallery
+
+  9-10 deg Libra
+
+Having Passed Through Narrow Rapids, A Canoe Reaches Calm Waters
+
+  10-11 deg Libra
+
+A Professor Peering Over His Glasses At His Students
+
+  11-12 deg Libra
+
+Miners Are Surfacing From A Deep Coal Mine
+
+  12-13 deg Libra
+
+Children Blowing Soap Bubbles
+
+  13-14 deg Libra
+
+In The Heat Of The Noon Hour A Man Takes A Siesta
+
+  14-15 deg Libra
+
+Circular Paths
+
+  15-16 deg Libra
+
+After A Storm A Boat Landing Stands In Need Of Reconstruction
+
+  16-17 deg Libra
+
+A Retired Sea Captain Watches Ships Entering And Leaving The Harbor
+
+  17-18 deg Libra
+
+Two Men Placed Under Arrest
+
+  18-19 deg Libra
+
+A Gang Of Robbers In Hiding
+
+  19-20 deg Libra
+
+A Rabbi Performing His Duties
+
+  20-21 deg Libra
+
+A Sunday Crowd Enjoying The Beach
+
+  21-22 deg Libra
+
+A Child Giving Birds A Drink At A Fountain
+
+  22-23 deg Libra
+
+Chanticleer’s Voice Heralds Sunrise
+
+  23-24 deg Libra
+
+A Butterfly With A Third Wing On Its Left Side
+
+  24-25 deg Libra
+
+The Sight Of An Autumn Leaf Brings To A Pilgrim The Sudden Revelation Of The Mystery Of Life And Death
+
+  25-26 deg Libra
+
+An Eagle And A Large White Dove Change Into Each Other
+
+  26-27 deg Libra
+
+An Airplane Sails, High In The Clear Sky
+
+  27-28 deg Libra
+
+A Man Becoming Aware Of Spiritual Forces Surrounding And Assisting Him
+
+  28-29 deg Libra
+
+Mankind’s Vast And Enduring Effort To Reach For Knowledge Transferable From Generation To Generation
+
+  29-30 deg Libra
+
+Three Mounds Of Knowledge On A Philosopher’s Head
+
+ 
+
+Scorpio
+  0-1 deg Scorpio
+
+A Crowded Sightseeing Bus On A City Street
+
+  1-2 deg Scorpio
+
+A Delicate Bottle Of Perfume Lies Broken, Releasing Its Fragrance
+
+  2-3 deg Scorpio
+
+A House-Raising Party In A Small Village Enlists The Neighbors’ Cooperation
+
+  3-4 deg Scorpio
+
+A Youth Carries A Lighted Candle In A Devotional Ritual
+
+  4-5 deg Scorpio
+
+A Massive Rocky Shore Resist The Pounding Of The Sea
+
+  5-6 deg Scorpio
+
+The Gold Rush Tears Men Away From Their Native Soil
+
+  6-7 deg Scorpio
+
+Deep-Sea Divers
+
+  7-8 deg Scorpio
+
+A Calm Lake Bathed In Moonlight
+
+  8-9 deg Scorpio
+
+A Dentist At Work
+
+  9-10 deg Scorpio
+
+A Fellowship Supper Reunites Old Comrades
+
+  10-11 deg Scorpio
+
+A Drowning Man is Being Rescued
+
+  11-12 deg Scorpio
+
+An Official Embassy Ball
+
+  12-13 deg Scorpio
+
+An Inventor Performs A Laboratory Experiment
+
+  13-14 deg Scorpio
+
+Telephone Lineman At Work Installling New Connections
+
+  14-15 deg Scorpio
+
+Children Playing Around Five Mounds Of Sand
+
+  15-16 deg Scorpio
+
+A Girl’s Face Breaking Into A Smile
+
+  16-17 deg Scorpio
+
+A Woman, Fecundated By Her Own Spirit, Is “Great With Child”
+
+  17-18 deg Scorpio
+
+A Path Through Woods Brilliant With Multicolored Splendor
+
+  18-19 deg Scorpio
+
+A Parrot Repeats The Conversation He Has Overheard
+
+  19-20 deg Scorpio
+
+A Woman Draws Away Two Dark Curtains Closing The Entrance To A Sacred Pathway
+
+  20-21 deg Scorpio
+
+Obeying His Conscience, A Soldier Resists Orders
+
+  21-22 deg Scorpio
+
+Hunters Shooting Wild Ducks
+
+  22-23 deg Scorpio
+
+A Rabbit Metamorphoses Into A Nature Sprit
+
+  23-24 deg Scorpio
+
+After Having Heard An Inspired Individual Deliver His “Sermon On The Mount,” Crowds Are Returning Home
+
+  24-25 deg Scorpio
+
+An X-Ray Photograph
+
+  25-26 deg Scorpio
+
+American Indians Making Camp After Moving Into A New Territory
+
+  26-27 deg Scorpio
+
+A Military Band Marches Noisily On Through The City Streets
+
+  27-28 deg Scorpio
+
+The King Of The Fairies Approaching His Domain
+
+  28-29 deg Scorpio
+
+An Indian Squaw Pleading To The Chief For The Lives Of Her Children
+
+  29-30 deg Scorpio
+
+Children In Halloween Costumes Indulge In Various Pranks
+
+ 
+
+Sagittarius
+  0-1 deg Sagittarius
+
+Retired Army Veterans Gather To Reawaken Old Memories
+
+  1-2 deg Sagittarius
+
+White-capped Waves Display The Power Of Wind Over Sea
+
+  2-3 deg Sagittarius
+
+Two Men Playing Chess
+
+  3-4 deg Sagittarius
+
+A Little Child Learning To Walk With The Encouragement Of His Parents
+
+  4-5 deg Sagittarius
+
+An Old Owl Sits Alone On The Branch Of A Large Tree
+
+  5-6 deg Sagittarius
+
+A Game Of Cricket
+
+  6-7 deg Sagittarius
+
+Cupid Knocks At The Door Of A Human Heart
+
+  7-8 deg Sagittarius
+
+Within The Depths Of The Earth New Elements Are Being Formed
+
+  8-9 deg Sagittarius
+
+A Mother Leads Her Small Child Step By Step Up A Steep Stairway
+
+  9-10 deg Sagittarius
+
+A Theatrical Representation Of A Golden-Haired Goddess Of Opportuinity
+
+  10-11 deg Sagittarius
+
+In The Left Section Of An Archaic Temple, A Lamp Burns In A Container Shaped Like A Human Body
+
+  11-12 deg Sagittarius
+
+A Flag Turns Into An Eagle; The Eagle Into A Chanticleer Saluting The Dawn
+
+  12-13 deg Sagittarius
+
+A Widow’s Past Is Brought To Light
+
+  13-14 deg Sagittarius
+
+The Great Pyramid And The Sphinx
+
+  14-15 deg Sagittarius
+
+The Ground Hog Looking For Its Shadow On Ground Hog Day
+
+  15-16 deg Sagittarius
+
+Sea Gulls Fly Around A Ship In Expectation Of Food
+
+  16-17 deg Sagittarius
+
+An Easter Sunrise Service Draws A Large Crowd
+
+  17-18 deg Sagittarius
+
+Children Playing On The Beach, Their Heads Protected By Sunbonnets
+
+  18-19 deg Sagittarius
+
+Pelicans Menaced By The Behavior And Refuse Of Men Seek Safer Areas For Bringing Up Their Young
+
+  19-20 deg Sagittarius
+
+In An Old-Fashioned Northern Village Men Cut The Ice Of A Frozen Pond For Use During The Summer
+
+  20-21 deg Sagittarius
+
+A Child And A Dog Wearing Borrowed Eyeglasses
+
+  21-22 deg Sagittarius
+
+A Chinese Laundry
+
+  22-23 deg Sagittarius
+
+A Group Of Immigrants As They Fulfill The Requirements Of Entrance Into The New Country
+
+  23-24 deg Sagittarius
+
+A Bluebird Perched On The Gate Of A Cottage
+
+  24-25 deg Sagittarius
+
+A Chubby Boy On A Hobby-Horse
+
+  25-26 deg Sagittarius
+
+A Flag Bearer In A Battle
+
+  26-27 deg Sagittarius
+
+A Sculptor At His Work
+
+  27-28 deg Sagittarius
+
+An Old Bridge Over A Beautiful Stream Is Still In Constant Use
+
+  28-29 deg Sagittarius
+
+A Fat Boy Mowing The Lawn Of His House On An Elegant Suburban Street
+
+  29-30 deg Sagittarius
+
+The Pope Blessing The Faithful
+
+ 
+
+Capricorn
+  0-1 deg Capricorn
+
+An Indian Chief Claims Power From The Assembled Tribe
+
+  1-2 deg Capricorn
+
+Three Rose Windows In A Gothic Church, One Damaged By War
+
+  2-3 deg Capricorn
+
+A Human Soul, In Its Eagerness For New Experiences, Seeks Embodiment
+
+  3-4 deg Capricorn
+
+A Group Of People Outfitting A Large Canoe At The Start Of A Journey By Water
+
+  4-5 deg Capricorn
+
+Indians On The Warpath. While Some Men Row A Well-Filled Canoe, Others In It Perform A War Dance
+
+  5-6 deg Capricorn
+
+Ten Logs Lie Under An Archway Leading To Darker Woods
+
+  6-7 deg Capricorn
+
+A Veiled Prophet Speaks, Seized By The Power Of A God
+
+  7-8 deg Capricorn
+
+In A Sunlit Home Domesticated Birds Sing Joyously
+
+  8-9 deg Capricorn
+
+An Angel Carrying A Harp
+
+  9-10 deg Capricorn
+
+An Albatross Feeding From The Hand Of A Sailor
+
+  10-11 deg Capricorn
+
+A Large Group Of Pheasant On A Private Estate
+
+  11-12 deg Capricorn
+
+An Illustrated Lecture On Natural Science Reveals Little-Known Aspects Of Life
+
+  12-13 deg Capricorn
+
+A Fire Worshipper Meditates On The Ultimate Realities Of Existence
+
+  13-14 deg Capricorn
+
+An Ancient Bas-Relief Carved In Granite Remains A Witness To A Long-Forgotten Culture
+
+  14-15 deg Capricorn
+
+In A Hospital, The Children’s Ward Is Filled With Toys
+
+  15-16 deg Capricorn
+
+School Grounds Filled With Boys And Girls In Gymnasium Suits
+
+  16-17 deg Capricorn
+
+A Repressed Woman Finds A Psychological Release In Nudism
+
+  17-18 deg Capricorn
+
+The Union Jack Flag Files From A British Warship
+
+  18-19 deg Capricorn
+
+A Five-Year-Old Child Carrying A Bag Filled With Groceries
+
+  19-20 deg Capricorn
+
+A Hidden Choir Is Singing During A Religious Service
+
+  20-21 deg Capricorn
+
+A Relay Race
+
+  21-22 deg Capricorn
+
+By Accepting Defeat Gracefully, A General Reveals Nobility Of Character
+
+  22-23 deg Capricorn
+
+A Soldier Receiving Two Awards For Bravery In Combat
+
+  23-24 deg Capricorn
+
+A Woman Entering A Convent
+
+  24-25 deg Capricorn
+
+A Store Filled With Precious Oriental Rugs
+
+  25-26 deg Capricorn
+
+A Nature Sprit Dancing In The Iridescent Mist Of A Waterfall
+
+  26-27 deg Capricorn
+
+Pilgrims Climbing The Steep Steps Leading To A Mountain Shrine
+
+  27-28 deg Capricorn
+
+A Large Aviary
+
+  28-29 deg Capricorn
+
+A Woman Reading Tea Leaves
+
+  29-30 deg Capricorn
+
+A Secret Meeting Of Men Responsible For Executive Decisions In World Affairs
+
+ 
+
+Aquarius
+  0-1 deg Aquarius
+
+An Old Adobe Mission In California
+
+  1-2 deg Aquarius
+
+An Unexpected Thunderstorm
+
+  2-3 deg Aquarius
+
+A Deserter From The Navy
+
+  3-4 deg Aquarius
+
+A Hindu Yogi Demonstrates His Healing Powers
+
+  4-5 deg Aquarius
+
+A Council Of Ancestors Is Seen Implementing Thee Efforts Of A Young Leader
+
+  5-6 deg Aquarius
+
+A Masked Figure Performs Ritualistic Acts In A Mystery Play
+
+  6-7 deg Aquarius
+
+A Child Is Seen Being Born Out Of An Egg
+
+  7-8 deg Aquarius
+
+Beautifully Gowned Wax Figures On Display
+
+  8-9 deg Aquarius
+
+A Flag Is Seen Turning Into An Eagle
+
+  9-10 deg Aquarius
+
+A Man Who Had For A Time Become The Embodiment Of A Popular Ideal Is Made To Realize That As A Person He Is Not This Ideal
+
+  10-11 deg Aquarius
+
+During A Silent Hour, A Man Receives A New Inspiration Which May Change His Life
+
+  11-12 deg Aquarius
+
+On A Vast Staircase Stand People Of Different Types, Graduated Upward
+
+  12-13 deg Aquarius
+
+A Barometer
+
+  13-14 deg Aquarius
+
+A Train Entering A Tunnel
+
+  14-15 deg Aquarius
+
+Two Lovebirds Sitting On A Fence And Singing Happily
+
+  15-16 deg Aquarius
+
+A Big Businessman At His Desk
+
+  16-17 deg Aquarius
+
+A Watchdog Stands Guard, Protecting His Master And His Possessions
+
+  17-18 deg Aquarius
+
+A Man’s Secret Motives Are Being Publicly Unmasked
+
+  18-19 deg Aquarius
+
+A Forest Fire Is Being Subdued By The Use Of Water, Chemicals And Sheer Muscular Energy
+
+  19-20 deg Aquarius
+
+A Large White Dove Bearing A Message
+
+  20-21 deg Aquarius
+
+A Disappointed And Disillusioned Woman Courageously Faces A Seemingly Empty Life
+
+  21-22 deg Aquarius
+
+A Rug Is Placed On The Floor Of A Nursery To Allow Children To Play In Comfort And Warmth
+
+  22-23 deg Aquarius
+
+A Big Bear Sitting Down And Waving All Its Paws
+
+  23-24 deg Aquarius
+
+A Man, Having Overcome His Passions, Teaches Deep Wisdom In Terms Of His Experience
+
+  24-25 deg Aquarius
+
+A Butterfly With The Right Wing More Perfectly Formed
+
+  25-26 deg Aquarius
+
+A Garage Man Testing A Car’s Battery With A Hydrometer
+
+  26-27 deg Aquarius
+
+An Ancient Pottery Bowl Filled With Fresh Violets
+
+  27-28 deg Aquarius
+
+A Tree Felled And Sawed To Ensure A Supply Of Wood For The Winter
+
+  28-29 deg Aquarius
+
+A Butterfly Emerging From A Chrysalis
+
+  29-30 deg Aquarius
+
+Deeply Rooted In The Past Of A Very Ancient Culture, A Spiritual Brotherhood In Which Many Individual Minds Are Merged Into The Glowing Light Of A Unanimous Consciousness Is Revealed To One Who Has Emerged Successfully From His Metamorphosis
+
+ 
+
+Pisces
+  0-1 deg Pisces
+
+In A Crowded Marketplace Farmers And Middlemen Display A Great Variety Of Products
+
+  1-2 deg Pisces
+
+A Squirrel Hiding From Hunters
+
+  2-3 deg Pisces
+
+Petrified Tree Trunks Lie Broken On Desert Sand
+
+  3-4 deg Pisces
+
+Heavy Car Traffic On A Narrow Isthmus Linking Two Seashore Resorts
+
+  4-5 deg Pisces
+
+A Church Bazaar
+
+  5-6 deg Pisces
+
+A Parade Of Army Officers In Full Dress
+
+  6-7 deg Pisces
+
+Illumined By A Shaft Of Light, A Large Cross Lies On Rocks Surrounded By Sea
+
+  7-8 deg Pisces
+
+A Girl Blowing A Bugle
+
+  8-9 deg Pisces
+
+A Jockey Spurs His Horse, Intent On Outdistancing His Rivals
+
+  9-10 deg Pisces
+
+An Aviator Pursues His Journey, Flying Through Ground-Obscuring Clouds
+
+  10-11 deg Pisces
+
+Men Traveling A Narrow Path, Seeking Illumination
+
+  11-12 deg Pisces
+
+In The Sanctuary Of An Occult Brotherhood, Newly Initiated Members Are Being Examined And Their Character Tested
+
+  12-13 deg Pisces
+
+An Ancient Sword, Used In Many Battles, Is Displayed In A Museum
+
+  13-14 deg Pisces
+
+A Lady Wrapped In A Large Stole Of Fox Fur
+
+  14-15 deg Pisces
+
+An Officer Instructing His Men Before A Simulated Assault Under A Barrage Of Live Shells
+
+  15-16 deg Pisces
+
+In The Quiet Of His Study A Creative Individual Experiences A Flow Of Inspiration
+
+  16-17 deg Pisces
+
+An Easter Parade
+
+  17-18 deg Pisces
+
+In A Gigantic Tent, Villagers Witness A Spectacular Performance
+
+  18-19 deg Pisces
+
+A Master Instructing His Disciple
+
+  19-20 deg Pisces
+
+A Table Set For An Evening Meal
+
+  20-21 deg Pisces
+
+Under The Watchful And Kind Eye Of A Chinese Servant, A Girl Fondles A Little White Lamb
+
+  21-22 deg Pisces
+
+A Prophet Carrying Tablets Of The New Law Is Walking Down The Slopes Of Mount Sinai
+
+  22-23 deg Pisces
+
+A “Materializing” Medium Giving A Seance
+
+  23-24 deg Pisces
+
+On A Small Island Surrounded By The Vast Expanse Of The Sea, People Are Seen Living In Close Interaction
+
+  24-25 deg Pisces
+
+A Religious Organization Succeeds In Overcoming The Corrupting Influence Of Perverted Practices and Materialized Ideals
+
+  25-26 deg Pisces
+
+Watching The Very Thin Moon Crescent Appearing At Sunset, Different People Realize That The Time Has Come To Go Ahead With Their Different Projects
+
+  26-27 deg Pisces
+
+The Harvest Moon Illumines A Clear Autumnal Sky
+
+  27-28 deg Pisces
+
+A Fertile Garden Under The Full Moon Reveals A Variety Of Full-Grown Vegetables
+
+  28-29 deg Pisces
+
+Light Breaking Into Many Colors As It Passes Through A Prism
+
+  29-30 deg Pisces
+
+A Majestic Rock Formation Resembling A Face Is Idealized By A Boy Who Takes It As His Ideal Of Greatness, And As He Grows Up, Begins To Look Like It.'

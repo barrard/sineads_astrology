@@ -62,10 +62,18 @@ textarea{
 }
 
 div.output{
-  max-height: 150px;
+  max-height: 350px;
   overflow-y: scroll;
   width:100%;
   border: 3px solid #212529;
+}
+
+
+.table td, th{
+   text-align: center;   
+}
+td input{
+  width: 100%;
 }
 
 input[data-meta="name"]{
@@ -118,4 +126,21 @@ th{
 .profile-item{
   border-bottom: 1px solid black;
   display: block;
+}
+
+.sabian_symbol_table_container{
+  overflow-y: scroll;
+  max-height: 100px;
+  border: 2px solid black;
+
+}
+
+.max-height{
+  max-height: 100%;
+}
+.half-height{
+  max-height: 50%;
+}
+.zero-height{
+  max-height: 0%;
 }
