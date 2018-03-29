@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient
 var mongodb = require('mongodb')
 var url = 'mongodb://localhost:27017';
-var database_name = "astrology"
+var database_name = "astrology-test"
 
 function handleError(err){
   if(err){
