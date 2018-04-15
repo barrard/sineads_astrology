@@ -59,8 +59,12 @@ module.exports ={
         if(err){
           console.log('err')
           console.log(err)
+          callback({err:err})
+
         }else{
           console.log('succesful update')
+          callback({message:resp})
+
           // console.log(resp)
         }
       })
@@ -75,9 +79,13 @@ module.exports ={
         if(err){
           console.log('err')
           console.log(err)
+          callback({err:err})
+
         }else{
           console.log('succesful update')
           // console.log(resp)
+          callback({message:resp})
+
         }
       })
     })
@@ -121,6 +129,8 @@ module.exports ={
         }else{
           console.log('we got delete?')
           // callback({resp})
+          callback({message:resp})
+
         }
       })
 
