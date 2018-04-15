@@ -165,7 +165,6 @@ SABIAN_SYMBOLS = {
     if(!SABIAN_SYMBOLS.save_state) return (SABIAN_SYMBOLS.alert_to_save())
     SABIAN_SYMBOLS.current_profile_id = id
   SABIAN_SYMBOLS.current_profile=name
-  SABIAN_SYMBOLS.load_profile(_symbol_data)
     $.post('/astrology/get_sabian_profile', {_id:id}, (resp)=>{
       if(!resp.message){
         App.report_error($('#current-profile-view'), 'resp.errorMessage sabian profile fetch err')
