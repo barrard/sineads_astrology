@@ -37,6 +37,19 @@ app.post('/input', (req, res)=>{
 })
 
 
+app.post('/input_edit', (req, res)=>{
+  console.log('input_edit route hit?')
+  console.log(req.body)
+  var data = req.body
+  var at = data.section+"-description"
+  MongoDB.update_at("inputs", data, at, (resp)=>{
+    console.log('//////')
+    console.log(resp)
+    res.send(resp.result)
+
+  })
+})
+
 app.post('/output', (req, res)=>{
   console.log('output route hit?')
   console.log(req.body)

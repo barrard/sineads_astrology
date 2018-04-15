@@ -72,12 +72,13 @@ SABIAN_SYMBOLS = {
     const _container = $('#profile_list_container')
     var _list_item = `
         <div data-sabian-profile-item="${_id}">
-          <p
+          <span
             onclick="SABIAN_SYMBOLS.set_current_sabian_symbol_profile('${_id}', '${_name}')" 
             class="profile-item" 
             >${_name}
-          </p>
-          <button class="delete-button" onclick=SABIAN_SYMBOLS.delete_profile('${_id}')>X</button>
+          </span>
+          <button class="btn btn-danger btn-small" onclick=SABIAN_SYMBOLS.delete_profile('${_id}')>X</button>
+
         </div>`;
     $(_container).append(_list_item);
 

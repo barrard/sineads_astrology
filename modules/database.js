@@ -61,17 +61,26 @@ module.exports ={
           console.log(err)
         }else{
           console.log('succesful update')
-          console.log(resp)
+          // console.log(resp)
         }
       })
     })
+  },
 
-    // module.exports.findInCollection(collectionName, id, (resp)=>{
-    //   if(resp.message){
-    //     console.log('we good')
-    //     console.log(resp)
-    //   }
-    // })
+  update_at:(collectionName, data, at, callback)=>{
+    const id = new mongodb.ObjectID(data.id)
+    var data = data.data
+    connectionToMongoCollection(collectionName, function(col, client){
+      col.update({_id:id}, {$set:{[at]:data}} ,(err, resp)=>{
+        if(err){
+          console.log('err')
+          console.log(err)
+        }else{
+          console.log('succesful update')
+          // console.log(resp)
+        }
+      })
+    })
   },
 
   findInCollection:(collectionName, objToFindInMongo, callback)=>{
@@ -110,8 +119,8 @@ module.exports ={
           console.log('we got error')
           callback({err})
         }else{
-          console.log('we got resp?')
-          callback({resp})
+          console.log('we got delete?')
+          // callback({resp})
         }
       })
 

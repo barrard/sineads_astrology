@@ -1,4 +1,5 @@
 App={
+  edit_mode:false,
   current_content:'SABIAN_SYMBOLS',
   current_data_section:'',
   list_counter:{},
@@ -217,8 +218,13 @@ App={
 
     },
     create_message_result:(msg, el, _name, count)=>{
-      console.log('why is this not working?')
-      $(el).append(`<tr><td>${count}</td><td>${msg[_name+"-description"]}</td> <td><button onclick="App.delete_description(this) "type="button" class="btn btn-danger"data-ID="${msg._id}">X</button></td></tr>`)
+      $(el).append(`
+        <tr>
+          <td>${count}</td>
+          <td data-description='${msg._id}'>${msg[_name+"-description"]}</td>
+          <td><button onclick="App.edit_description(this) "type="button" class="btn btn-info btn-big"data-ID="${msg._id}"><span class="fa fa-edit"></span></button></td>
+          <td><button onclick="App.delete_description(this) "type="button" class="btn btn-danger btn-big"data-ID="${msg._id}"><span class="fa fa-trash"></span></button></td>
+        </tr>`)
       // $(el).append(`<li>${"-description"} <span data-ID="${msg['_id']}">X</span></li>`)
     },
     hide_all_data_section:()=>{
@@ -251,6 +257,38 @@ App={
         })
       })
     }
+  },
+  edit_description:(e)=>{
+    if(App.edit_mode)return
+    App.edit_mode=true
+    var _id = $(e).attr('data-ID')
+    console.log(e)
+    console.log(_id)
+    var text_area = $(`[data-description='${_id}']`)
+    var description = $(text_area).html()
+    var textarea = document.createElement('textarea')
+    textarea.value = description
+    $(text_area).html('')
+    $(text_area).append(textarea)
+    textarea.focus()
+    $(textarea).on('blur', ()=>{
+      console.log('blur')
+      var new_desc = $(textarea).val()
+      $(text_area).html('')
+      $(text_area).html(new_desc)
+      App.edit_mode=false
+      console.log(App.current_data_section)
+      var data = {id:_id, data:new_desc, section:App.current_data_section}
+      $.post("/astrology/input_edit", data, (resp)=>{
+        console.log(resp)
+        // data['_id']=resp.message.insertedIds[0]
+
+      })
+
+
+    })
+
+    console.log(description)
   },
   delete_description:(e)=>{
     if(confirm('Are you sure you want to delete this item?')){
