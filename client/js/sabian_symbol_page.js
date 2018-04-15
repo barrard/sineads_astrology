@@ -77,7 +77,7 @@ SABIAN_SYMBOLS = {
             class="profile-item" 
             >${_name}
           </p>
-          <button class="button" onclick=SABIAN_SYMBOLS.delete_profile('${_id}')>X</button>
+          <button class="delete-button" onclick=SABIAN_SYMBOLS.delete_profile('${_id}')>X</button>
         </div>`;
     $(_container).append(_list_item);
 
@@ -158,13 +158,25 @@ SABIAN_SYMBOLS = {
     $('#save_sabian_symbols_btn').addClass('big-red')
 
   },
+  list_item_selected:(id)=>{
+    var list_items = $('[data-sabian-profile-item]')
+    console.log(list_items)
+    $.each(list_items, (i, v)=>{
+      $(v).removeClass('selected')
+      // ?
+      //   console.log('yes'):
+      //   console.log('no')
+    })
+    $(`[data-sabian-profile-item="${id}"]`).addClass('selected')
+  },
 
 
   //profiles in the profile colelction
   set_current_sabian_symbol_profile:(id, name)=>{
     if(!SABIAN_SYMBOLS.save_state) return (SABIAN_SYMBOLS.alert_to_save())
     SABIAN_SYMBOLS.current_profile_id = id
-  SABIAN_SYMBOLS.current_profile=name
+    SABIAN_SYMBOLS.current_profile=name
+    SABIAN_SYMBOLS.list_item_selected(id)
     $.post('/astrology/get_sabian_profile', {_id:id}, (resp)=>{
       if(!resp.message){
         App.report_error($('#current-profile-view'), 'resp.errorMessage sabian profile fetch err')

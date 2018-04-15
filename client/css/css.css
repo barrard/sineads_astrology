@@ -11,6 +11,18 @@
   background: red;
 }
 
+.selected{
+  background: radial-gradient(
+      #220309,
+      #BCB3B5
+    );
+}
+
+.selected .profile-item{
+  font-size: 1.5em;
+  background: rgba(244, 244, 244, 0.5);
+}
+
 
 #background-img{
   background-image:url("../astrology-book.jpg");
@@ -43,6 +55,10 @@ textarea{
   position: static;
   right: 0;
   border: 0;
+}
+
+.delete-button{
+  background: #ae0f2f;
 }
 
 .aspect-section{
@@ -121,15 +137,39 @@ th{
 
 /* SABIAN_SYMBOLS styles */
 
+[data-sabian-profile-item]{
+    /*border: black 1px solid;*/
+
+}
+
 .profiles-list{
   border: 2px solid black;
   height: 200px;
   overflow-y: scroll;
 }
 
+ p{
+}
+
 .profile-item{
   border-bottom: 1px solid black;
   display: block;
+  cursor: pointer;
+  text-align: center;
+
+}
+
+
+.profile-item:hover{
+  transition: none;
+
+  background: black;
+  color: white;
+}
+.profile-item:active{
+  transition: none;
+  /*background: black;*/
+  color: goldenrod;
 }
 
 .sabian_symbol_table_container{
