@@ -6,6 +6,10 @@
   box-sizing: content-box;
 }
 
+.big-red{
+  transform: scale(2);
+  background: red;
+}
 
 
 #background-img{

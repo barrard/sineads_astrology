@@ -1,5 +1,7 @@
 SABIAN_SYMBOLS = {
   current_profile:'',
+  current_profile_id:'',
+  save_state:true,
   symbols:['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Descendant', 'Midheaven', 'Nadir', 'North Node', 'South Node'],
   sabian_symbol_compared_values:[],
   init:()=>{
@@ -16,10 +18,39 @@ SABIAN_SYMBOLS = {
     $.post('/astrology/add_new_sabian_symbol_profile', {name:_name}, (resp)=>{
       console.log(resp)
       if(resp.message){
-        let _id = resp.message.insertedIds[0];
+        let data = resp.message[0]
+        let _id = data._id;
+        let _symbol_data = data.symbol_data;
         SABIAN_SYMBOLS.add_new_profile_item_to_list(_name, _id)
+        SABIAN_SYMBOLS.current_profile=_name
+        SABIAN_SYMBOLS.current_profile_id=_id;
+        SABIAN_SYMBOLS.load_profile(_symbol_data)
+
       }
     })
+  },
+  save_profile:(_name, _data)=>{
+    console.log(_name)
+    const _id = SABIAN_SYMBOLS.current_profile_id
+    //here we will call the API, and wait for response then add run add_new_profile_item_to_list
+    $.post('/astrology/save_sabian_symbol_profile', {id:_id, name:_name, data:_data}, (resp)=>{
+      console.log(resp)
+      if(resp.message){
+        SABIAN_SYMBOLS.set_save_state(true)
+      }
+    })
+  },
+  set_save_state:(bool)=>{
+    SABIAN_SYMBOLS.save_state = bool;
+  },
+  load_profile:(symbol_data)=>{
+    if(!SABIAN_SYMBOLS.save_state) return
+    console.log(symbol_data)
+    for(let symbol in symbol_data){
+      $('input[data-symbol-for="'+symbol+'"]').val(symbol_data[symbol])
+
+    }
+
   },
 
   get_all_profiles:()=>{
@@ -68,7 +99,7 @@ SABIAN_SYMBOLS = {
       var _tr = `
         <tr>
           <td>${v}</td>
-          <td><input type="text" data-symbol-for="${v}"></td>
+          <td><input onchange="SABIAN_SYMBOLS.set_save_state(false)" type="text" data-symbol-for="${v}"></td>
           <td>E</td>
         </tr>`
         $(_container).append(_tr);
@@ -93,25 +124,58 @@ SABIAN_SYMBOLS = {
 
     })
       
+    $('#save_sabian_symbols_btn').on('click', ()=>{
+      SABIAN_SYMBOLS.save_state = true;
+      $('#save_sabian_symbols_btn').removeClass('big-red')
+
+      let _name = SABIAN_SYMBOLS.current_profile
+      // SABIAN_SYMBOLS.create_new_profile(_name)
+      if(!_name)return
+        console.log('update the databse wit this data')
+
+        var data = {}
+      $.each($('input[data-symbol-for]'), (i, v)=>{
+        let symbol = $(v).attr('data-symbol-for')
+        let val = $(v).val()
+        data[symbol]=val
+        console.log(data)
+      })
+
+
+      console.log(_name);
+      SABIAN_SYMBOLS.save_profile(_name, data);
+    })
+
     $('#add_new_sabian_symbol_profile_btn').on('click', ()=>{
       console.log('get the value of add_new_sabian_symbol_profile_profile')
       let _name = $('#add_new_sabian_symbol_profile_input').val()
+      if(!_name)return
       SABIAN_SYMBOLS.create_new_profile(_name)
+      $('#add_new_sabian_symbol_profile_input').val('')
+
     })
+  },
+  alert_to_save:()=>{
+    alert('Save you data first');
+    $('#save_sabian_symbols_btn').addClass('big-red')
+
   },
 
 
   //profiles in the profile colelction
   set_current_sabian_symbol_profile:(id)=>{
-
+    if(!SABIAN_SYMBOLS.save_state) return (SABIAN_SYMBOLS.alert_to_save())
+    SABIAN_SYMBOLS.current_profile_id = id
     $.post('/astrology/get_sabian_profile', {_id:id}, (resp)=>{
       if(!resp.message){
         App.report_error($('#current-profile-view'), 'resp.errorMessage sabian profile fetch err')
       }else{
         console.log(resp)
         let name = resp.message[0].name
+        let data = resp.message[0].symbol_data
         SABIAN_SYMBOLS.current_profile=name
         $('#current-profile-view').text(SABIAN_SYMBOLS.current_profile)
+        SABIAN_SYMBOLS.load_profile(data)
 
       }
 

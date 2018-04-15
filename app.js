@@ -75,10 +75,32 @@ app.post('/add_new_sabian_symbol_profile', (req, res)=>{
   let name = req.body.name
   MongoDB.insertIntoMongo("profiles", {name:name, symbol_data:symbol_data}, (resp)=>{
     console.log('//////')
-    console.log(resp)
-    res.send(resp)
+    const id = new mongodb.ObjectID(resp.message.insertedIds[0])
+
+    if(!resp.errorMessage){
+      MongoDB.findInCollection("profiles", {_id:id}, (resp)=>{
+        console.log('//////')
+        console.log(resp)
+        res.send(resp)
+
+      })
+    }
+    // console.log(resp)
+    // res.send(resp)
 
   })
+})
+
+app.post('/save_sabian_symbol_profile', (req, res)=>{
+  const data = req.body.data
+  const name = req.body.name
+  const id = new mongodb.ObjectID(req.body.id)
+
+  if(!data || !name)return
+  console.log(name)
+  console.log(id)
+  console.log(data)
+  MongoDB.update("profiles", id, data)
 })
 
 

@@ -35,6 +35,7 @@ function connectionToMongoCollection(collectionName, callback){
 }
 
 module.exports ={
+  test:'test',
   connectMongo:connectMongo,
   connectionToMongoCollection:connectionToMongoCollection,
   insertIntoMongo:(collectionName, data, callback)=>{
@@ -51,6 +52,26 @@ module.exports ={
 
         })
     })
+  },
+  update:(collectionName, id, data, callback)=>{
+    connectionToMongoCollection(collectionName, function(col, client){
+      col.update({_id:id}, {$set:{symbol_data:data}} ,(err, resp)=>{
+        if(err){
+          console.log('err')
+          console.log(err)
+        }else{
+          console.log('succesful update')
+          console.log(resp)
+        }
+      })
+    })
+
+    // module.exports.findInCollection(collectionName, id, (resp)=>{
+    //   if(resp.message){
+    //     console.log('we good')
+    //     console.log(resp)
+    //   }
+    // })
   },
 
   findInCollection:(collectionName, objToFindInMongo, callback)=>{
