@@ -22,9 +22,7 @@ SABIAN_SYMBOLS = {
         let _id = data._id;
         let _symbol_data = data.symbol_data;
         SABIAN_SYMBOLS.add_new_profile_item_to_list(_name, _id)
-        SABIAN_SYMBOLS.current_profile=_name
-        SABIAN_SYMBOLS.current_profile_id=_id;
-        SABIAN_SYMBOLS.load_profile(_symbol_data)
+
 
       }
     })
@@ -75,7 +73,7 @@ SABIAN_SYMBOLS = {
     var _list_item = `
         <div data-sabian-profile-item="${_id}">
           <p
-            onclick="SABIAN_SYMBOLS.set_current_sabian_symbol_profile('${_id}')" 
+            onclick="SABIAN_SYMBOLS.set_current_sabian_symbol_profile('${_id}', '${_name}')" 
             class="profile-item" 
             >${_name}
           </p>
@@ -163,9 +161,11 @@ SABIAN_SYMBOLS = {
 
 
   //profiles in the profile colelction
-  set_current_sabian_symbol_profile:(id)=>{
+  set_current_sabian_symbol_profile:(id, name)=>{
     if(!SABIAN_SYMBOLS.save_state) return (SABIAN_SYMBOLS.alert_to_save())
     SABIAN_SYMBOLS.current_profile_id = id
+  SABIAN_SYMBOLS.current_profile=name
+  SABIAN_SYMBOLS.load_profile(_symbol_data)
     $.post('/astrology/get_sabian_profile', {_id:id}, (resp)=>{
       if(!resp.message){
         App.report_error($('#current-profile-view'), 'resp.errorMessage sabian profile fetch err')
