@@ -1,6 +1,7 @@
 SABIAN_SYMBOLS = {
   current_profile:'',
   current_profile_id:'',
+  symbols_available:[],
   save_state:true,
   symbols:['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Descendant', 'Midheaven', 'Nadir', 'North Node', 'South Node'],
   sabian_symbol_compared_values:[],
@@ -10,6 +11,8 @@ SABIAN_SYMBOLS = {
     SABIAN_SYMBOLS.set_up_sabian_symbol_edit_view();
     SABIAN_SYMBOLS.set_event_handlers();
     SABIAN_SYMBOLS.init_compare_tool();
+    SABIAN_SYMBOLS.utils.get_sabian_symbols_availale_array();
+
 
   },
   create_new_profile:(_name)=>{
@@ -43,7 +46,63 @@ SABIAN_SYMBOLS = {
     })
   },
   set_save_state:(bool)=>{
+    // console.log('save state')
     SABIAN_SYMBOLS.save_state = bool;
+  },
+  set_description_from_list:(e, input)=>{
+    console.log(input)
+    console.log(e)
+    console.log($(e).html())
+    console.log($(e).text())
+    $(input).val($(e).text())
+    console.log('ooommmmgg')
+  },
+
+  search_available_symbol_data:(input)=>{
+    SABIAN_SYMBOLS.set_save_state(false)
+    $('#filtered-list-container').remove()
+
+    // console.log('input')
+    console.log(input.value.length)
+    console.log(input.value)
+    console.log($(input))
+    if(input.value.length > 3 ){
+      var list = []
+      SABIAN_SYMBOLS.symbols_available.forEach((description)=>{
+        if (description.startsWith(input.value)){
+          console.log('YES')
+          list.push(description)
+        }else{
+          console.log('NO')
+          
+        }
+      })
+      console.log(list)
+      var container = document.createElement('div')
+      container.id = "filtered-list-container"
+      list.forEach((item)=>{
+        var div_item = document.createElement('div') 
+        $(div_item).on('click', ()=>{
+          SABIAN_SYMBOLS.set_description_from_list(div_item, input)
+        })
+          div_item.classList.add('filtered-list-item')
+          var quote1 = document.createElement('span')
+          quote1.classList.add('big-quotes')
+          quote1.innerText = '"'
+          $(div_item).append(quote1)
+          $(div_item).text(item)
+          var quote2 = document.createElement('span')
+          quote2.classList.add('big-quotes')
+          quote2.innerText = '"'
+          $(div_item).append(quote2)
+          $(container).append(div_item)
+  
+      })
+      
+      console.log('APPEND IT!!')
+      $(container).insertAfter($(input))
+
+    }
   },
   load_profile:(symbol_data)=>{
     if(!SABIAN_SYMBOLS.save_state) return
@@ -106,7 +165,7 @@ SABIAN_SYMBOLS = {
       var _tr = `
         <tr>
           <td>${v}</td>
-          <td><input onchange="SABIAN_SYMBOLS.set_save_state(false)" type="text" data-symbol-for="${v}"></td>
+          <td><input oninput="SABIAN_SYMBOLS.search_available_symbol_data(this)" type="text" data-symbol-for="${v}"></td>
           <td>E</td>
         </tr>`
         $(_container).append(_tr);
@@ -120,7 +179,7 @@ SABIAN_SYMBOLS = {
     // add_new_sabian_symbol_profile_btn
     //add_new_sabian_symbol_profile_input
     // [data-sabian-profile-item*=""]
-    let table_sizes=['1000px','400px', '100px']
+    let table_sizes=['1000px','500px', '250px']
     let current_table_state = 2
     let _max = table_sizes.length - 1;
     $('#minimize_sabian_symbols_btn').on('click', ()=>{
@@ -218,6 +277,14 @@ SABIAN_SYMBOLS = {
         select.append(`<option>${i}</option>`)
       })
       return select
+    },
+    get_sabian_symbols_availale_array:()=>{
+      $.get('/astrology/get_sabian_symbols_availale_array', (resp)=>{
+        console.log('get_sabian_symbols_availale_array')
+        // console.log(resp)
+        SABIAN_SYMBOLS.symbols_available = resp
+
+      })
     }
   }
 

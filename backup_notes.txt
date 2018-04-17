@@ -1,0 +1,6 @@
+mongodump -d astrology -o ~/backups/astrology_test
+
+cd ~/backups/astrology/astrology
+git add ./
+git commit -m "backup"
+git push -u origin master

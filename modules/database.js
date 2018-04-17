@@ -3,6 +3,61 @@ var mongodb = require('mongodb')
 var url = 'mongodb://localhost:27017';
 var database_name = "astrology"
 
+var SABIAN_SYMBOLS_AVAILABLE = [];
+
+//TODO, make this an array ob objs to keep track of how many times each occurs
+function gather_all_sabian_symbols(){
+
+  // console.log(module.exports.test)
+  module.exports.findInCollection('profiles', {}, (profiles)=>{
+    console.log('Get all profiles')
+    if(!profiles.message) return
+    var data = profiles.message
+    // console.log(data)
+    console.log(data.length)
+    data.forEach((profile)=>{
+      for( let symbol in profile.symbol_data){
+        // console.log(symbol+" : "+profile.symbol_data[symbol])
+        // console.log(profile.symbol_data[symbol])//the specific sabian symbol description
+        if(SABIAN_SYMBOLS_AVAILABLE.indexOf(profile.symbol_data[symbol])== -1){
+          // console.log('adit')
+          SABIAN_SYMBOLS_AVAILABLE.push(profile.symbol_data[symbol])
+        }else{
+          // console.log('got it')
+        }
+      }
+    })
+    // return SABIAN_SYMBOLS_AVAILABLE;
+
+  })
+}
+
+function check_for_new_symbols(data){
+  console.log('check_for_new_symbols')
+  console.log('---------  curent  ----------')
+  console.log(SABIAN_SYMBOLS_AVAILABLE)
+  for (let symbol in data){
+    if(SABIAN_SYMBOLS_AVAILABLE.indexOf(data[symbol]) == -1){
+      console.log('got a new on, add it to the SABIAN_SYMBOLS_AVAILABLE array')
+      SABIAN_SYMBOLS_AVAILABLE.push(data[symbol])
+    }else{
+      console.log('nothing new here')
+      console.log(data[symbol])
+    }
+  }
+}
+
+function get_sabian_symbols_available(){
+  if(!SABIAN_SYMBOLS_AVAILABLE.length){
+    gather_all_sabian_symbols()
+    console.log('THE MongoDB.get_sabian_symbols_available()')
+    console.log(SABIAN_SYMBOLS_AVAILABLE)
+
+  }
+  return SABIAN_SYMBOLS_AVAILABLE;
+}
+
+
 function handleError(err){
   if(err){
     console.log('-----HandleError helper function found an error------')
@@ -140,7 +195,12 @@ module.exports ={
 
     })
 
-    }
+    },
+    get_sabian_symbols_available:get_sabian_symbols_available,
+    check_for_new_symbols:check_for_new_symbols
 
 
 }
+
+gather_all_sabian_symbols()
+

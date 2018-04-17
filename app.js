@@ -116,9 +116,13 @@ app.post('/save_sabian_symbol_profile', (req, res)=>{
   const id = new mongodb.ObjectID(req.body.id)
 
   if(!data || !name)return
+  console.log('save_sabian_symbol_profile')
+  console.log('name')
+  console.log('id')
   console.log(name)
   console.log(id)
-  console.log(data)
+  // console.log(data)
+  MongoDB.check_for_new_symbols(data)//to add to the cache
   MongoDB.update("profiles", id, data, (resp)=>{
     // console.log(resp)
     if(resp.err){
@@ -133,8 +137,8 @@ app.post('/save_sabian_symbol_profile', (req, res)=>{
 app.post('/get_all_profiles', (req, res)=>{
   console.log(req.body)
   MongoDB.findInCollection("profiles", {}, (resp)=>{
-    console.log('//////')
-    console.log(resp)
+    console.log('get_all_profiles')
+    // console.log(resp)
     res.send(resp)
 
   })
@@ -145,7 +149,7 @@ app.post('/delete_profile', (req, res)=>{
   console.log(req.body)
   var id = req.body._id
   MongoDB.findAndDeleteOneInCollection("profiles", id, (resp)=>{
-    console.log('//////')
+    console.log('delete_profile')
     console.log(resp)
     res.send('ok')
 
@@ -156,11 +160,18 @@ app.post('/get_sabian_profile', (req, res)=>{
   console.log(req.body._id)
   const _id = new mongodb.ObjectID(req.body._id)
   MongoDB.findInCollection("profiles", {_id:_id}, (resp)=>{
-    console.log('//////')
+    console.log('get_sabian_profile')
     console.log(resp)
     res.send(resp)
 
   })
+})
+
+app.get('/get_sabian_symbols_availale_array', (req, res)=>{
+  var array = MongoDB.get_sabian_symbols_available()
+  console.log('get_sabian_symbols_availale_array')
+  // console.log(array)
+   res.send(array)
 })
 
 
