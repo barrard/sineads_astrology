@@ -281,8 +281,11 @@ App={
       var data = {id:_id, data:new_desc, section:App.current_data_section}
       $.post("/astrology/input_edit", data, (resp)=>{
         console.log(resp)
-        // data['_id']=resp.message.insertedIds[0]
-
+        if (resp.err){
+          toastr.error(resp.err)
+        }else{
+          toastr.info(resp.message)
+        }
       })
 
 
@@ -298,7 +301,13 @@ App={
       var _id = $(e).attr('data-ID')
       $.post('/astrology/delete_description', {_id} , (resp)=>{
         console.log(resp)
-        $(e).parent().parent().remove()
+        if (resp.err){
+          toastr.error("There was an error, please contact Dave")
+        }else{
+          toastr.info('Description deleted')
+          $(e).parent().parent().remove()
+
+        }
 
       })
     }

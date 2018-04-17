@@ -118,8 +118,12 @@ module.exports ={
   },
 
   findAndDeleteOneInCollection:(collectionName, objToDelete, callback)=>{
+    console.log('find an delete')
     connectionToMongoCollection(collectionName, (col, client)=>{
-      console.log(typeof(objToDelete))
+      console.log('the objToDelete is ')
+      console.log(objToDelete)
+      console.log('type of = '+typeof(objToDelete))
+      console.log(objToDelete)
       const _id = new mongodb.ObjectID(objToDelete)
       console.log(typeof(_id))
       col.deleteOne({_id:_id}, (err, resp)=>{

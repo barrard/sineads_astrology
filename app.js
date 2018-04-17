@@ -44,8 +44,13 @@ app.post('/input_edit', (req, res)=>{
   var at = data.section+"-description"
   MongoDB.update_at("inputs", data, at, (resp)=>{
     console.log('//////')
-    console.log(resp)
-    res.send(resp.result)
+    // console.log(resp)
+    if (resp.err){
+      res.send({err:'Sorry there was an error trying to Save, please contact Dave'})
+
+    }else{
+      res.send({message:"Saved!"})
+    }
 
   })
 })
@@ -69,8 +74,9 @@ app.post('/delete_description', (req, res)=>{
   var data = req.body
   MongoDB.findAndDeleteOneInCollection("inputs", data._id, (resp)=>{
     console.log('//////')
-    console.log(resp)
-    console.error(resp)
+    console.log('deleted description callback')
+    // console.log(resp)
+    // console.error(resp)
     res.send('resp')
 
   })
@@ -113,7 +119,14 @@ app.post('/save_sabian_symbol_profile', (req, res)=>{
   console.log(name)
   console.log(id)
   console.log(data)
-  MongoDB.update("profiles", id, data)
+  MongoDB.update("profiles", id, data, (resp)=>{
+    // console.log(resp)
+    if(resp.err){
+      res.send({err:'The save didnt work, please contact Dave'})
+    }else if(resp.message){
+      res.send({message:'Profile Saved'})
+    }
+  })
 })
 
 
@@ -128,8 +141,9 @@ app.post('/get_all_profiles', (req, res)=>{
 })
 
 app.post('/delete_profile', (req, res)=>{
+  console.log('/delete profile route')
   console.log(req.body)
-  let id = req.body._id
+  var id = req.body._id
   MongoDB.findAndDeleteOneInCollection("profiles", id, (resp)=>{
     console.log('//////')
     console.log(resp)

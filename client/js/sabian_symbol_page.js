@@ -22,6 +22,7 @@ SABIAN_SYMBOLS = {
         let _id = data._id;
         let _symbol_data = data.symbol_data;
         SABIAN_SYMBOLS.add_new_profile_item_to_list(_name, _id)
+        toastr.success('New profiel created')
 
 
       }
@@ -35,6 +36,9 @@ SABIAN_SYMBOLS = {
       console.log(resp)
       if(resp.message){
         SABIAN_SYMBOLS.set_save_state(true)
+        toastr.success('Profile Saved')
+      }else{
+        toastr.warning('That may not have saved....?')
       }
     })
   },
@@ -77,16 +81,20 @@ SABIAN_SYMBOLS = {
             class="profile-item" 
             >${_name}
           </span>
-          <button class="btn btn-danger btn-small" onclick=SABIAN_SYMBOLS.delete_profile('${_id}')>X</button>
+          <button class="btn btn-danger btn-small" onclick="SABIAN_SYMBOLS.delete_profile('${_id}', '${_name}')">X</button>
 
         </div>`;
     $(_container).append(_list_item);
 
   },
-  delete_profile:(_id)=>{
+  delete_profile:(_id, _name)=>{
+    if(!confirm(`Are you sure you want ot perminatly delete ${_name}'s profile`)) return
     $.post('/astrology/delete_profile', {_id}, (resp)=>{
       if(resp=='ok'){
         $('[data-sabian-profile-item="'+_id+'"]').remove()
+        toastr.info(`removed ${_name}`)
+        SABIAN_SYMBOLS.current_profile=undefined
+
 
       }
     })
