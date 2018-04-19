@@ -1,8 +1,16 @@
+var colors = require('colors');
+var logger = require('tracer').colorConsole({
+                    format : "{{timestamp.green}} <{{title.yellow}}> {{message.cyan}} (in {{file.red}}:{{line}})",
+                    dateformat : "HH:MM:ss.L"
+                })
+
+
+
 module.exports ={
   verify_full_obj:(obj)=>{
     for( let k in obj){
       if(!obj[k]){
-        console.log(k)
+        logger.log(k)
         return false
       }
     }

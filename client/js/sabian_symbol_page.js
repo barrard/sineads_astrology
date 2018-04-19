@@ -2,9 +2,11 @@ SABIAN_SYMBOLS = {
   current_profile:'',
   current_profile_id:'',
   symbols_available:[],
+  symbols_data_obj:{},
   save_state:true,
   symbols:['Sun', 'Moon', 'Mercury', 'Venus', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto', 'Ascendant', 'Descendant', 'Midheaven', 'Nadir', 'North Node', 'South Node'],
   sabian_symbol_compared_values:[],
+  hide_edit_view:false,
   init:()=>{
     console.log('Sabin symbols loading')
     SABIAN_SYMBOLS.get_all_profiles()
@@ -37,8 +39,10 @@ SABIAN_SYMBOLS = {
     //here we will call the API, and wait for response then add run add_new_profile_item_to_list
     $.post('/astrology/save_sabian_symbol_profile', {id:_id, name:_name, data:_data}, (resp)=>{
       console.log(resp)
-      if(resp.message){
+      if(resp){
         SABIAN_SYMBOLS.set_save_state(true)
+        SABIAN_SYMBOLS.symbols_available = resp.symbols_available
+        SABIAN_SYMBOLS.symbols_data_obj = resp.symbol_count_data
         toastr.success('Profile Saved')
       }else{
         toastr.warning('That may not have saved....?')
@@ -57,10 +61,45 @@ SABIAN_SYMBOLS = {
     $(input).val($(e).text())
     console.log('ooommmmgg')
   },
+  remove_list_option:()=>{
+    $('#filtered-list-container').remove()
+  },
+  listern_for_blur_to_remove_symbol_list:(input)=>{//listening for blur to do cleanup stuff
+    console.log('BLURRRRRRR!@#')
+    if(!SABIAN_SYMBOLS.save_state) SABIAN_SYMBOLS.save_sabian_symbol_profile()
+    const trimmed_value = $(input).val().trim()
+    $(input).val(trimmed_value)
+    setTimeout(()=>{
+      SABIAN_SYMBOLS.remove_list_option()      
+    }, 200)//Hack to let the list be a target of click when the blur event happens
+
+  },
+  on_focus:(input)=>{
+    console.log(input)
+    console.log('Focus')
+    $(input).one('blur', function(){
+      SABIAN_SYMBOLS.listern_for_blur_to_remove_symbol_list(input)
+    })
+  },
+  make_symbol_count_data_list:(description)=>{
+    var unordered_list = document.createElement('ul')
+
+    console.log(SABIAN_SYMBOLS.symbols_data_obj[description])
+    SABIAN_SYMBOLS.symbols_data_obj[description].forEach((item)=>{
+      var list_item = document.createElement('li')
+      for(let name in item){
+        list_item.innerText = `${name} - ${item[name]}`
+        unordered_list.append(list_item)
+
+      }
+
+    })
+    return unordered_list;
+  },
 
   search_available_symbol_data:(input)=>{
     SABIAN_SYMBOLS.set_save_state(false)
-    $('#filtered-list-container').remove()
+    SABIAN_SYMBOLS.remove_list_option()
 
     // console.log('input')
     console.log(input.value.length)
@@ -69,7 +108,7 @@ SABIAN_SYMBOLS = {
     if(input.value.length > 3 ){
       var list = []
       SABIAN_SYMBOLS.symbols_available.forEach((description)=>{
-        if (description.startsWith(input.value)){
+        if (description.indexOf(input.value)!=-1){
           console.log('YES')
           list.push(description)
         }else{
@@ -84,17 +123,18 @@ SABIAN_SYMBOLS = {
         var div_item = document.createElement('div') 
         $(div_item).on('click', ()=>{
           SABIAN_SYMBOLS.set_description_from_list(div_item, input)
+          // SABIAN_SYMBOLS.remove_list_option()
+
         })
+
+        var count_data = SABIAN_SYMBOLS.make_symbol_count_data_list(item)
+        count_data.classList.add('symbol-count-data')
+
           div_item.classList.add('filtered-list-item')
-          var quote1 = document.createElement('span')
-          quote1.classList.add('big-quotes')
-          quote1.innerText = '"'
-          $(div_item).append(quote1)
+
           $(div_item).text(item)
-          var quote2 = document.createElement('span')
-          quote2.classList.add('big-quotes')
-          quote2.innerText = '"'
-          $(div_item).append(quote2)
+          $(div_item).append(count_data)
+
           $(container).append(div_item)
   
       })
@@ -161,18 +201,49 @@ SABIAN_SYMBOLS = {
 
   set_up_sabian_symbol_edit_view:()=>{
     const _container = $('#sabian_symbol_edit_view')
+    if(!SABIAN_SYMBOLS.current_profile){
+      SABIAN_SYMBOLS.hide_edit_view = true
+      $(_container).addClass('disabled')
+    }
     $.each(SABIAN_SYMBOLS.symbols, (i, v)=>{
       var _tr = `
         <tr>
           <td>${v}</td>
-          <td><input oninput="SABIAN_SYMBOLS.search_available_symbol_data(this)" type="text" data-symbol-for="${v}"></td>
+          <td><input 
+            class="text-center"
+            onfocus="SABIAN_SYMBOLS.on_focus(this)" 
+            oninput="SABIAN_SYMBOLS.search_available_symbol_data(this)" 
+            type="text" 
+            data-symbol-for="${v}"></td>
           <td>E</td>
         </tr>`
         $(_container).append(_tr);
     })
   },
+  save_sabian_symbol_profile:()=>{
+    SABIAN_SYMBOLS.save_state = true;
+    $('#save_sabian_symbols_btn').removeClass('big-red')
+
+    let _name = SABIAN_SYMBOLS.current_profile
+    // SABIAN_SYMBOLS.create_new_profile(_name)
+    if(!_name)return
+      console.log('update the databse wit this data')
+
+      var data = {}
+    $.each($('input[data-symbol-for]'), (i, v)=>{
+      let symbol = $(v).attr('data-symbol-for')
+      let val = $(v).val().trim()
+      data[symbol]=val
+      // console.log(data)
+    })
+
+
+    console.log(_name);
+    SABIAN_SYMBOLS.save_profile(_name, data);
+  },
 
   set_event_handlers:()=>{
+
     // save btn, minimize btn, profiles list, add new profile
     //save_sabian_symbols_btn
     // minimize_sabian_symbols_btn
@@ -191,25 +262,7 @@ SABIAN_SYMBOLS = {
     })
       
     $('#save_sabian_symbols_btn').on('click', ()=>{
-      SABIAN_SYMBOLS.save_state = true;
-      $('#save_sabian_symbols_btn').removeClass('big-red')
-
-      let _name = SABIAN_SYMBOLS.current_profile
-      // SABIAN_SYMBOLS.create_new_profile(_name)
-      if(!_name)return
-        console.log('update the databse wit this data')
-
-        var data = {}
-      $.each($('input[data-symbol-for]'), (i, v)=>{
-        let symbol = $(v).attr('data-symbol-for')
-        let val = $(v).val()
-        data[symbol]=val
-        console.log(data)
-      })
-
-
-      console.log(_name);
-      SABIAN_SYMBOLS.save_profile(_name, data);
+      SABIAN_SYMBOLS.save_sabian_symbol_profile()
     })
 
     $('#add_new_sabian_symbol_profile_btn').on('click', ()=>{
@@ -237,10 +290,14 @@ SABIAN_SYMBOLS = {
     })
     $(`[data-sabian-profile-item="${id}"]`).addClass('selected')
   },
+  remove_disable:(el)=>{
+    $(el).removeClass('disabled')
+  },
 
 
   //profiles in the profile colelction
   set_current_sabian_symbol_profile:(id, name)=>{
+    if(SABIAN_SYMBOLS.hide_edit_view) SABIAN_SYMBOLS.remove_disable($('#sabian_symbol_edit_view'));
     if(!SABIAN_SYMBOLS.save_state) return (SABIAN_SYMBOLS.alert_to_save())
     SABIAN_SYMBOLS.current_profile_id = id
     SABIAN_SYMBOLS.current_profile=name
@@ -279,10 +336,11 @@ SABIAN_SYMBOLS = {
       return select
     },
     get_sabian_symbols_availale_array:()=>{
-      $.get('/astrology/get_sabian_symbols_availale_array', (resp)=>{
+      $.get('/astrology/get_sabian_symbols_availale_array', (resp)=>{//{symbols_available:array, symbol_count_data:SYMBOL_DATA_OBJ}
         console.log('get_sabian_symbols_availale_array')
-        // console.log(resp)
-        SABIAN_SYMBOLS.symbols_available = resp
+        console.log(resp)
+        SABIAN_SYMBOLS.symbols_available = resp.symbols_available
+        SABIAN_SYMBOLS.symbols_data_obj = resp.symbol_count_data
 
       })
     }
