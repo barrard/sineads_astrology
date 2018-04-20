@@ -6,8 +6,8 @@ var logger = require('tracer').colorConsole({
 var MongoClient = require('mongodb').MongoClient
 var mongodb = require('mongodb')
 var url = 'mongodb://localhost:27017';
-// var database_name = "astrology"
-var database_name = "astr"
+var database_name = "astrology"
+// var database_name = "astr"
 
 var SABIAN_SYMBOLS_AVAILABLE = [];
 var SYMBOL_DATA_OBJ = {};
