@@ -6,7 +6,8 @@ var logger = require('tracer').colorConsole({
 var MongoClient = require('mongodb').MongoClient
 var mongodb = require('mongodb')
 var url = 'mongodb://localhost:27017';
-var database_name = "astrology"
+// var database_name = "astrology"
+var database_name = "astr"
 
 var SABIAN_SYMBOLS_AVAILABLE = [];
 var SYMBOL_DATA_OBJ = {};
@@ -38,7 +39,7 @@ function gather_all_sabian_symbols(callback){
       }
     })//symbols_available:array, symbol_count_data:SYMBOL_DATA_OBJ
     logger.log('returning all data')
-    logger.log({symbols_available:SABIAN_SYMBOLS_AVAILABLE, symbol_count_data:SYMBOL_DATA_OBJ})
+    // logger.log({symbols_available:SABIAN_SYMBOLS_AVAILABLE, symbol_count_data:SYMBOL_DATA_OBJ})
     callback({symbols_available:SABIAN_SYMBOLS_AVAILABLE, symbol_count_data:SYMBOL_DATA_OBJ})
 
   })

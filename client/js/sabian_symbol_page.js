@@ -56,9 +56,10 @@ SABIAN_SYMBOLS = {
   set_description_from_list:(e, input)=>{
     console.log(input)
     console.log(e)
-    console.log($(e).html())
-    console.log($(e).text())
-    $(input).val($(e).text())
+    // console.log($(e).html())
+    // console.log($(e).text())
+    // console.log($(e).attr('data-text'))
+    $(input).val($(e).attr('data-text'))
     console.log('ooommmmgg')
   },
   remove_list_option:()=>{
@@ -133,6 +134,7 @@ SABIAN_SYMBOLS = {
           div_item.classList.add('filtered-list-item')
 
           $(div_item).text(item)
+          $(div_item).attr('data-text',item)
           $(div_item).append(count_data)
 
           $(container).append(div_item)
