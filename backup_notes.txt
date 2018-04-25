@@ -1,4 +1,4 @@
-mongodump -d astrology -o ~/backups/astrology_test
+mongodump -d astrology -o ~/backups/astrology
 
 cd ~/backups/astrology/astrology
 git add ./

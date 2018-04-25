@@ -182,7 +182,7 @@ SABIAN_SYMBOLS = {
             class="profile-item" 
             >${_name}
           </span>
-          <button class="btn btn-danger btn-small" onclick="SABIAN_SYMBOLS.delete_profile('${_id}', '${_name}')">X</button>
+          <button style="display:none;" class="btn btn-danger btn-small" onclick="SABIAN_SYMBOLS.delete_profile('${_id}', '${_name}')">X</button>
 
         </div>`;
     $(_container).append(_list_item);
