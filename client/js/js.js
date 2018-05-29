@@ -1,9 +1,9 @@
 App={
   edit_mode:false,
-  current_content:'SABIAN_SYMBOLS',
+  current_content:'SEARCH_SYMBOLS',
   current_data_section:'',
   list_counter:{},
-  main_content_sections:['IO','SABIAN_SYMBOLS'],
+  main_content_sections:['IO','SABIAN_SYMBOLS', 'SEARCH_SYMBOLS'],
   init:()=>{
     console.log('App loading')
     return App.setUI();
@@ -328,6 +328,7 @@ App={
 window.addEventListener("load", function(event) {
   console.log("All resources finished loading!");
   SABIAN_SYMBOLS.init();
+  SEARCH_SYMBOLS_PAGE.init();
 
   App.init();
 });

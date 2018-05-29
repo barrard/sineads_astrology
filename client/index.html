@@ -13,7 +13,7 @@
     <title>Astrology database</title>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container">
     <!-- header image -->
     <div class="row">
       <div class="jumbotron jumbotron-fluid" id="background-img">
@@ -40,10 +40,12 @@
               <li class="nav-item">
                 <a class="nav-link" data-nav="SABIAN_SYMBOLS" href="#sabian_symbols">Sabian Symbols</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" data-nav="SEARCH_SYMBOLS" href="#search_symbols">Search Symbols</a>
+              </li>
             </ul>
 
           </div>
-          <label>Name:</label><input data-meta="name" type='text'>
         </nav>
       </div>
     </div>
@@ -54,9 +56,33 @@
 
 <!-- MAIN-CONTENT -->
     <div class="row main-content">
+      <!-- SYMBOL-SEARCH SECTION -->
+      <div class="col " id="SEARCH_SYMBOLS">
+        <div class="row justify-content-center">
+          <h2>Seach Symbols</h2>
+        </div>
+        <div class="row justify-content-center">
+          <label>Symbol:</label>
+          <input class="text-center"id="search_symbols_input" data-meta="name" type='text'>
+        </div>
+        <div class="row justify-content-center">
 
-    <!-- SABIAN-SYMBOLS SECTION
-     -->
+
+          <h3 id="current_search_symbol"></h3>
+        </div>
+        <div class="row justify-content-center">
+          <span id="data_anchor"></span>
+        
+        </div>
+        <div class="row justify-content-center">
+          <table class="table" id="search_symbols_results_table">
+            
+          </table>
+
+        </div>
+      </div>
+
+    <!-- SABIAN-SYMBOLS SECTION -->
       <div class="col" id="SABIAN_SYMBOLS">
         <div class="row justify-content-center">
           <h2>SABIAN SYMBOLS</h2>
@@ -114,13 +140,12 @@
             </table>
           </div>
         </div>
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
           <h4>Compare</h4>
         </div>
         <div class="row">
           <div class="col-6">
             <div class="row justify-content-center sabian_symbol_compare_tool">
-              <!-- build a select with all the sabian symbols -->
             </div>
           </div>
           <div class="col-6">
@@ -128,13 +153,13 @@
               results
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
+      <!-- END OF SABIAN-SYMBOLS SECTION -->
 
 
 
       <!-- INPUT/OUTPUT SECTION -->
-
 
       <div class="col" id="IO"> <!-- The io thing  -->
         <div class="row aspect-section">
@@ -599,6 +624,7 @@
             </div> <!-- data-section -->
           </div> 
         </div>
+        <hr>
         <div class="row aspect-section">
           <div class="container">
             <div class="row justify-content-center">
@@ -683,6 +709,7 @@
             </div> <!-- data-section -->
           </div> 
         </div>
+        <hr>
         <button type="button" class="submit-button full-width btn btn-primary">submit</button>
       </div>
       </div>
@@ -700,5 +727,6 @@
     <!-- <script src="/js/js.js"></script> -->
     <!-- <script src="/js/sabian_symbol_page.js"></script> -->
     <script src="/astrology/js/sabian_symbol_page.js"></script>
+    <script src="/astrology/js/search_symbols_page.js"></script>
   </body>
 </html>

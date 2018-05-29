@@ -12,7 +12,7 @@ SABIAN_SYMBOLS = {
     SABIAN_SYMBOLS.get_all_profiles()
     SABIAN_SYMBOLS.set_up_sabian_symbol_edit_view();
     SABIAN_SYMBOLS.set_event_handlers();
-    SABIAN_SYMBOLS.init_compare_tool();
+    // SABIAN_SYMBOLS.init_compare_tool();
     SABIAN_SYMBOLS.utils.get_sabian_symbols_availale_array();
 
 
@@ -59,8 +59,13 @@ SABIAN_SYMBOLS = {
     // console.log($(e).html())
     // console.log($(e).text())
     // console.log($(e).attr('data-text'))
-    $(input).val($(e).attr('data-text'))
+    var sabian_symbol = $(e).attr('data-text')
+    $(input).val(sabian_symbol)
     console.log('ooommmmgg')
+    if(location.hash =="#search_symbols"){
+      //call a function in the SEARCH_SYMBOLS_PAGE
+      SEARCH_SYMBOLS_PAGE.set_current_value(sabian_symbol)
+    }
   },
   remove_list_option:()=>{
     $('#filtered-list-container').remove()
@@ -99,7 +104,10 @@ SABIAN_SYMBOLS = {
   },
 
   search_available_symbol_data:(input)=>{
-    SABIAN_SYMBOLS.set_save_state(false)
+    if (location.hash =="#sabian_symbols"){
+      SABIAN_SYMBOLS.set_save_state(false)
+
+    }
     SABIAN_SYMBOLS.remove_list_option()
 
     // console.log('input')
@@ -128,23 +136,41 @@ SABIAN_SYMBOLS = {
 
         })
 
-        var count_data = SABIAN_SYMBOLS.make_symbol_count_data_list(item)
-        count_data.classList.add('symbol-count-data')
+
 
           div_item.classList.add('filtered-list-item')
 
           $(div_item).text(item)
           $(div_item).attr('data-text',item)
-          $(div_item).append(count_data)
+
+          if (location.hash == "#search_symbols") {
+            var count_data = SABIAN_SYMBOLS.make_symbol_count_data_list(item)
+            count_data.classList.add('symbol-count-data')
+            // console.log('where should i stick this?')
+            // console.log(count_data)
+            //anchor this elswhere
+            // current_search_symbol
+            // data_anchor
+            $(div_item).append(count_data)
+
+          }
+          // console.log(location.hash)
 
           $(container).append(div_item)
   
       })
       
       console.log('APPEND IT!!')
-      $(container).insertAfter($(input))
+      if(location.hash == "#search_symbols"){
+        $(container).insertAfter($('#data_anchor'))
+
+      }else{
+        $(container).insertAfter($(input))
+
+      }
 
     }
+    return
   },
   load_profile:(symbol_data)=>{
     if(!SABIAN_SYMBOLS.save_state) return
@@ -203,9 +229,11 @@ SABIAN_SYMBOLS = {
 
   set_up_sabian_symbol_edit_view:()=>{
     const _container = $('#sabian_symbol_edit_view')
+    const parent_container = $('.sabian_symbol_table_container')[0]
+
     if(!SABIAN_SYMBOLS.current_profile){
       SABIAN_SYMBOLS.hide_edit_view = true
-      $(_container).addClass('disabled')
+      $(parent_container).addClass('disabled')
     }
     $.each(SABIAN_SYMBOLS.symbols, (i, v)=>{
       var _tr = `
@@ -299,7 +327,7 @@ SABIAN_SYMBOLS = {
 
   //profiles in the profile colelction
   set_current_sabian_symbol_profile:(id, name)=>{
-    if(SABIAN_SYMBOLS.hide_edit_view) SABIAN_SYMBOLS.remove_disable($('#sabian_symbol_edit_view'));
+    if (SABIAN_SYMBOLS.hide_edit_view) SABIAN_SYMBOLS.remove_disable($('.sabian_symbol_table_container')[0]);
     if(!SABIAN_SYMBOLS.save_state) return (SABIAN_SYMBOLS.alert_to_save())
     SABIAN_SYMBOLS.current_profile_id = id
     SABIAN_SYMBOLS.current_profile=name
@@ -319,12 +347,12 @@ SABIAN_SYMBOLS = {
 
     })
   },
-  init_compare_tool:()=>{
-    let tool = $('.sabian_symbol_compare_tool')[0]
-    var select = SABIAN_SYMBOLS.utils.make_sabian_symbol_compare_select_box(SABIAN_SYMBOLS.symbols)
-    $(tool).append(select)
+  // init_compare_tool:()=>{
+  //   let tool = $('.sabian_symbol_compare_tool')[0]
+  //   var select = SABIAN_SYMBOLS.utils.make_sabian_symbol_compare_select_box(SABIAN_SYMBOLS.symbols)
+  //   $(tool).append(select)
 
-  },
+  // },
   utils:{
     make_sabian_symbol_compare_select_box:(sabian_symbol_array)=>{
       let select = $("<select></select>");

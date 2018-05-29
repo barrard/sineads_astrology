@@ -154,6 +154,10 @@ td input{
   width: 100%;
 }
 
+#search_symbols_input{
+  width: 50%;
+}
+
 input[data-meta="name"]{
   margin-right: 10px;
   margin-left: 10px;

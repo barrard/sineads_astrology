@@ -22,19 +22,19 @@ function gather_all_sabian_symbols(callback){
     if(!profiles.message) return
     var data = profiles.message
     // logger.log(data)
-    logger.log(data.length)
+    // logger.log(data.length)
     data.forEach((profile)=>{
       for( let symbol in profile.symbol_data){
-        logger.log(symbol+" : "+profile.symbol_data[symbol])
-        logger.log(profile.symbol_data[symbol])//the specific sabian symbol description
+        // logger.log(symbol+" : "+profile.symbol_data[symbol])
+        // logger.log(profile.symbol_data[symbol])//the specific sabian symbol description
         if(SABIAN_SYMBOLS_AVAILABLE.indexOf(profile.symbol_data[symbol])== -1){
-          logger.log('adit')
+          // logger.log('adit')
           SABIAN_SYMBOLS_AVAILABLE.push(profile.symbol_data[symbol])
           SYMBOL_DATA_OBJ[profile.symbol_data[symbol]] = [{[profile.name]:symbol}]
 
         }else{
           SYMBOL_DATA_OBJ[profile.symbol_data[symbol]].push({[profile.name]:symbol})
-          logger.log('got it')
+          // logger.log('got it')
         }
       }
     })//symbols_available:array, symbol_count_data:SYMBOL_DATA_OBJ
