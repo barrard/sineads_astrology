@@ -60,27 +60,31 @@ App={
       return(data)
     },
     init_submit_btn:()=>{
-      $('.submit-button')[0].addEventListener('click', ()=>{
-        var _data = App.verify_full_obj(App.current_data_section)
-        if( _data == "good"){
-          var data = App.utils.get_all_data()
-          $.post("/astrology/input", data, (resp)=>{
-            data['_id']=resp.message.insertedIds[0]
-            App.utils.create_message_result(data, $('[data-total-output="'+App.current_data_section+'"]'), App.current_data_section, ++App.list_counter[App.current_data_section]);
-            toastr.success(App.current_data_section.split('-').join(' '), "Submited succesfully")
-            console.log(resp)
-            $.each($('[name="'+App.current_data_section+'-description"]'), (i, v)=>{
-              $(v).val('')
-              // $(v).removeClass('is-set')
-              // $(v).addClass('not-set')
-            })
+      $('.submit-button').each((index, btn)=>{
+        btn.addEventListener('click', () => {
+          var _data = App.verify_full_obj(App.current_data_section)
+          if (_data == "good") {
+            var data = App.utils.get_all_data()
+            $.post("/astrology/input", data, (resp) => {
+              data['_id'] = resp.message.insertedIds[0]
+              App.utils.create_message_result(data, $('[data-total-output="' + App.current_data_section + '"]'), App.current_data_section, ++App.list_counter[App.current_data_section]);
+              toastr.success(App.current_data_section.split('-').join(' '), "Submited succesfully")
+              console.log(resp)
+              $.each($('[name="' + App.current_data_section + '-description"]'), (i, v) => {
+                $(v).val('')
+                // $(v).removeClass('is-set')
+                // $(v).addClass('not-set')
+              })
 
-          })       
-        }else{
-          console.log(_data)
-          App.utils.apply_error_notification(_data)
-        }
-   
+            })
+          } else {
+            console.log(_data)
+            App.utils.apply_error_notification(_data)
+          }
+
+        })
+
+
       })
     },
     apply_error_notification:(_el_obj)=>{

@@ -1,6 +1,12 @@
-mongodump -d astrology -o ~/backups/astrology
+mongodump -d astrology -o /home/dave/backups/astrology_db_backup
 
-cd ~/backups/astrology/astrology
+cd /home/dave/backups/astrology_db_backup/
 git add ./
 git commit -m "backup"
 git push -u origin master
+
+
+restoring my desktop, not pi
+
+cd /home/dave/backups/astrology_db_backup
+mongorestore -d astrology astrology
