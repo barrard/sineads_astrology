@@ -17,6 +17,7 @@ SEARCH_SYMBOLS_PAGE = {
 
   },
   set_current_value:(sabian_symbol)=>{
+    console.log('set_current_value in search sabina symbols page')
     SEARCH_SYMBOLS_PAGE.current_search_symbol = sabian_symbol
     $('#current_search_symbol').text(SEARCH_SYMBOLS_PAGE.current_search_symbol)
 
@@ -27,6 +28,8 @@ SEARCH_SYMBOLS_PAGE = {
   },
   display_results:(data_obj_array)=>{
     var search_symbols_results_table = $('#search_symbols_results_table')
+    //first clear any old results
+    search_symbols_results_table.html('')
     var td_array = []
     data_obj_array.forEach((data_obj)=>{
       for (let key in data_obj) {

@@ -191,7 +191,16 @@ SABIAN_SYMBOLS = {
         App.report_error(_container, 'error message:  '+ resp.errorMessage+' try adding some new profiles')//TODO call to action with animation
       }else if(resp.message){
         let _profile_array = resp.message
-        $.each(_profile_array, (i, v)=>{
+
+        console.log(_profile_array)
+        var ordered_array = _profile_array.sort((a, b)=>{
+        var A = a.name.toUpperCase().split(' ')[1]
+        var B = b.name.toUpperCase().split(' ')[1]
+          if (A < B) {return -1}
+          if (A > B) {return 1}
+          return 0;
+        })
+        $.each(ordered_array, (i, v)=>{
           let name = v.name;
           let id = v._id
           SABIAN_SYMBOLS.add_new_profile_item_to_list(name, id);

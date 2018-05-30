@@ -1,11 +1,12 @@
 App={
   edit_mode:false,
-  current_content:'SEARCH_SYMBOLS',
+  current_content:'search_symbols',
   current_data_section:'',
   list_counter:{},
-  main_content_sections:['IO','SABIAN_SYMBOLS', 'SEARCH_SYMBOLS'],
+  main_content_sections:['io','sabian_symbols', 'search_symbols'],
   init:()=>{
     console.log('App loading')
+    window.location.hash = App.current_content
     return App.setUI();
 
   },
