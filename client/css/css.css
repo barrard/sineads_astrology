@@ -222,7 +222,7 @@ th{
   margin: 5px;
   margin-left: 10px;
   border-bottom: 1px solid black;
-  display: inline-block;
+  display: block;
   cursor: pointer;
   text-align: center;
 
