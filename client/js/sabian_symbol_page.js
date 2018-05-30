@@ -211,7 +211,7 @@ SABIAN_SYMBOLS = {
   add_new_profile_item_to_list:(_name, _id)=>{
     const _container = $('#profile_list_container')
     var _list_item = `
-        <div data-sabian-profile-item="${_id}">
+        <div data-sabian-profile-item="${_id}" class="container justify-content-center">
           <span
             onclick="SABIAN_SYMBOLS.set_current_sabian_symbol_profile('${_id}', '${_name}')" 
             class="profile-item" 
