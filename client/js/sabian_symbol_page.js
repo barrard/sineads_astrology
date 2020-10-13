@@ -183,7 +183,7 @@ SABIAN_SYMBOLS = {
   },
 
   get_all_profiles:()=>{
-    $.post('/astrology/get_all_profiles', {}, (resp)=>{
+    $.post('/get_all_profiles', {}, (resp)=>{
       const _container = $('#profile_list_container')
       console.log(resp)
       if(resp.errorMessage){
@@ -374,7 +374,7 @@ SABIAN_SYMBOLS = {
       return select
     },
     get_sabian_symbols_availale_array:()=>{
-      $.get('/astrology/get_sabian_symbols_availale_array', (resp)=>{//{symbols_available:array, symbol_count_data:SYMBOL_DATA_OBJ}
+      $.get('/get_sabian_symbols_availale_array', (resp)=>{//{symbols_available:array, symbol_count_data:SYMBOL_DATA_OBJ}
         console.log('get_sabian_symbols_availale_array')
         console.log(resp)
         SABIAN_SYMBOLS.symbols_available = resp.symbols_available
