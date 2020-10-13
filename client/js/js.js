@@ -66,7 +66,7 @@ App={
           var _data = App.verify_full_obj(App.current_data_section)
           if (_data == "good") {
             var data = App.utils.get_all_data()
-            $.post("/astrology/input", data, (resp) => {
+            $.post("/input", data, (resp) => {
               data['_id'] = resp.message.insertedIds[0]
               App.utils.create_message_result(data, $('[data-total-output="' + App.current_data_section + '"]'), App.current_data_section, ++App.list_counter[App.current_data_section]);
               toastr.success(App.current_data_section.split('-').join(' '), "Submited succesfully")
@@ -115,7 +115,7 @@ App={
             $(tar).removeClass('not-set')
             $(tar).addClass('is-set')
             console.log(name)
-            $.post('/astrology/output', {[name]:val}, (data)=>{
+            $.post('/output', {[name]:val}, (data)=>{
               console.log(data)
               if(data.errorMessage != undefined){
                 console.log("no")
@@ -169,8 +169,8 @@ App={
         if(Object.keys(data_obj).length == count){
           console.log('we got a full obj');
           console.log(data_obj);
-          $.post('/astrology/output', data_obj, (resp)=>{
-            console.log('/astrology/output data returned, better clear what already in there.....');
+          $.post('/output', data_obj, (resp)=>{
+            console.log('/output data returned, better clear what already in there.....');
             $(el).html('')
             console.log(resp);
             App.utils.stop_spinner(el);
@@ -284,7 +284,7 @@ App={
       App.edit_mode=false
       console.log(App.current_data_section)
       var data = {id:_id, data:new_desc, section:App.current_data_section}
-      $.post("/astrology/input_edit", data, (resp)=>{
+      $.post("/input_edit", data, (resp)=>{
         console.log(resp)
         if (resp.err){
           toastr.error(resp.err)
@@ -304,7 +304,7 @@ App={
       console.log(e)
       console.log(e.parent)
       var _id = $(e).attr('data-ID')
-      $.post('/astrology/delete_description', {_id} , (resp)=>{
+      $.post('/delete_description', {_id} , (resp)=>{
         console.log(resp)
         if (resp.err){
           toastr.error("There was an error, please contact Dave")

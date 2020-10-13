@@ -20,7 +20,7 @@ SABIAN_SYMBOLS = {
   create_new_profile:(_name)=>{
     console.log(_name)
     //here we will call the API, and wait for response then add run add_new_profile_item_to_list
-    $.post('/astrology/add_new_sabian_symbol_profile', {name:_name}, (resp)=>{
+    $.post('/add_new_sabian_symbol_profile', {name:_name}, (resp)=>{
       console.log(resp)
       if(resp.message){
         let data = resp.message[0]
@@ -37,7 +37,7 @@ SABIAN_SYMBOLS = {
     console.log(_name)
     const _id = SABIAN_SYMBOLS.current_profile_id
     //here we will call the API, and wait for response then add run add_new_profile_item_to_list
-    $.post('/astrology/save_sabian_symbol_profile', {id:_id, name:_name, data:_data}, (resp)=>{
+    $.post('/save_sabian_symbol_profile', {id:_id, name:_name, data:_data}, (resp)=>{
       console.log(resp)
       if(resp){
         SABIAN_SYMBOLS.set_save_state(true)
@@ -224,7 +224,7 @@ SABIAN_SYMBOLS = {
   },
   delete_profile:(_id, _name)=>{
     if(!confirm(`Are you sure you want ot perminatly delete ${_name}'s profile`)) return
-    $.post('/astrology/delete_profile', {_id}, (resp)=>{
+    $.post('/delete_profile', {_id}, (resp)=>{
       if(resp=='ok'){
         $('[data-sabian-profile-item="'+_id+'"]').remove()
         toastr.info(`removed ${_name}`)
@@ -340,7 +340,7 @@ SABIAN_SYMBOLS = {
     SABIAN_SYMBOLS.current_profile_id = id
     SABIAN_SYMBOLS.current_profile=name
     SABIAN_SYMBOLS.list_item_selected(id)
-    $.post('/astrology/get_sabian_profile', {_id:id}, (resp)=>{
+    $.post('/get_sabian_profile', {_id:id}, (resp)=>{
       if(!resp.message){
         App.report_error($('#current-profile-view'), 'resp.errorMessage sabian profile fetch err')
       }else{
